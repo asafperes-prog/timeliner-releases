@@ -104,7 +104,7 @@ adjust whatever it finds.
 ### What are FuelCore, Phrase Syncopation and the other technique labels?
 
 They're songwriting techniques taught by Top40 Theory, the channel and course behind
-the Timeliner. See [FuelCore explained on YouTube](FUELCORE_VIDEO_LINK) and the
+the Timeliner. See [FuelCore explained on YouTube]([FUELCORE_VIDEO_LINK](https://youtu.be/ZmJ6xKdOWS8)) and the
 [Melodic Math course](https://www.top40theory.com/melodic-math-course).
 
 ### Something isn't working, or I have an idea
