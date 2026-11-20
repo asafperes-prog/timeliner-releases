@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Top40 Theory Timeliner — User Manual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#22242A; --ink-soft:#565A66; --ink-faint:#8A8F9C;
+    --paper:#FBFBFC; --panel:#F2F3F6; --line:#E2E4EA;
+    --navy:#2B2B2E; --navy-deep:#232326;
+    --teal:#22C8AC; --blue:#2FA8FF;
+    --kbd-bg:#33343A; --kbd-line:#4A4B52;
+    --wrap:74ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:Inter,-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  .display{font-family:"Space Grotesk",Inter,sans-serif;}
+
+  /* Hero — echoes the app's charcoal chrome and teal→blue headers */
+  header.hero{
+    background:var(--navy-deep); color:#EAF0F8;
+    padding:64px 28px 52px;
+    border-bottom:3px solid transparent;
+    border-image:linear-gradient(90deg,var(--teal),var(--blue)) 1;
+  }
+  .hero-inner{max-width:var(--wrap); margin:0 auto;}
+  .mark{
+    display:inline-block; font-family:"Space Grotesk",sans-serif; font-weight:700;
+    letter-spacing:.5px; font-size:14px; padding:7px 13px; border-radius:999px;
+    color:#06121F; background:linear-gradient(120deg,var(--teal),var(--blue));
+    margin-bottom:26px;
+  }
+  .hero h1{
+    font-family:"Space Grotesk",sans-serif; font-weight:700;
+    font-size:clamp(2.4rem,6vw,3.6rem); line-height:1.02; margin:0 0 14px;
+    letter-spacing:-.5px;
+  }
+  .hero p{margin:0; color:#AFBACB; font-size:1.12rem; max-width:56ch;}
+  .hero .meta{margin-top:26px; color:#7F8AA0; font-size:.92rem;}
+  .hero .weblinks{margin-top:14px; font-size:.95rem; color:#7F8AA0;}
+  .hero .weblinks a{color:#2FE0C0; text-decoration:none; font-weight:600;}
+  .hero .weblinks a:hover{text-decoration:underline;}
+
+  main{max-width:var(--wrap); margin:0 auto; padding:0 28px 90px;}
+
+  /* Contents */
+  nav.toc{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px;
+    padding:22px 26px; margin:44px 0 8px;
+  }
+  nav.toc h2{font-size:.8rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink-faint); margin:0 0 14px; font-weight:600;}
+  nav.toc ol{margin:0; padding:0; list-style:none; columns:2; column-gap:36px;}
+  nav.toc li{margin:0 0 9px; break-inside:avoid;}
+  nav.toc a{color:var(--ink); text-decoration:none; border-bottom:1px solid transparent;}
+  nav.toc a:hover{border-bottom-color:var(--blue); color:#12324a;}
+  nav.toc .num{color:var(--teal); font-family:"Space Grotesk",sans-serif; font-weight:600; margin-right:9px;}
+
+  section{padding-top:30px; margin-top:26px; border-top:1px solid var(--line);}
+  section:first-of-type{border-top:none;}
+  h2.sec{
+    font-family:"Space Grotesk",sans-serif; font-weight:600;
+    font-size:1.7rem; line-height:1.15; margin:.2rem 0 .5rem; letter-spacing:-.3px;
+  }
+  h2.sec .idx{color:var(--ink-faint); font-weight:500; margin-right:.5ch;}
+  h3{font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:1.12rem; margin:1.6rem 0 .4rem;}
+  p{margin:.5rem 0 1rem; max-width:70ch;}
+  .lede{font-size:1.06rem; color:var(--ink-soft);}
+  .credit{font-size:.88rem; color:var(--ink-faint); margin-top:1.4rem;}
+  ul,ol.steps{max-width:70ch;}
+  li{margin:.3rem 0;}
+
+  kbd{
+    font-family:"Space Grotesk",ui-monospace,monospace; font-size:.82em; font-weight:600;
+    color:#EAF0F8; background:var(--kbd-bg); border:1px solid var(--kbd-line);
+    border-bottom-width:2px; border-radius:5px; padding:1px 7px; white-space:nowrap;
+    display:inline-block; line-height:1.5;
+  }
+  .steps{counter-reset:step; list-style:none; padding:0; margin:1rem 0;}
+  .steps > li{
+    counter-increment:step; position:relative; padding:2px 0 14px 46px; margin:0;
+  }
+  .steps > li::before{
+    content:counter(step); position:absolute; left:0; top:-1px;
+    width:30px; height:30px; border-radius:50%;
+    background:linear-gradient(120deg,var(--teal),var(--blue)); color:#06121F;
+    font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:.95rem;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  .note{
+    background:var(--panel); border-left:3px solid var(--teal);
+    border-radius:0 8px 8px 0; padding:14px 18px; margin:1.1rem 0; font-size:.97rem;
+  }
+  .note strong{font-family:"Space Grotesk",sans-serif;}
+
+  table.keys{width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem;}
+  table.keys caption{text-align:left; font-family:"Space Grotesk",sans-serif; font-weight:600;
+    font-size:1.05rem; padding:1.2rem 0 .5rem; color:var(--ink);}
+  table.keys th{text-align:left; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--ink-faint); font-weight:600; padding:0 12px 8px; border-bottom:2px solid var(--line);}
+  table.keys td{padding:9px 12px; border-bottom:1px solid var(--line); vertical-align:top;}
+  table.keys td:first-child{white-space:nowrap; width:1%;}
+  table.keys tr:hover td{background:var(--panel);}
+
+  footer{max-width:var(--wrap); margin:0 auto; padding:34px 28px 60px; color:var(--ink-faint);
+    font-size:.9rem; border-top:1px solid var(--line);}
+  footer a{color:var(--blue); text-decoration:none;}
+
+  @media (max-width:640px){
+    nav.toc ol{columns:1;}
+    body{font-size:16px;}
+    table.keys td{padding:8px 8px;}
+    table.keys td:first-child{white-space:normal;}  /* phones: the keys wrap between keys */
+  }
+  @media print{
+    .web-only{display:none !important;}
+    body{background:#fff; font-size:11.5pt;}
+    header.hero{background:#fff; color:#000; padding:0 0 18px; border-image:none; border-bottom:2px solid var(--ink);}
+    .hero .mark{background:none; color:var(--ink); padding:0; margin-bottom:10px; border:1px solid var(--ink);}
+    .hero p,.hero .meta{color:#333;}
+    nav.toc{display:none;}
+    kbd{color:#000; background:#eee; border-color:#999;}
+    .steps>li::before{background:#000; color:#fff;}
+    section{break-inside:avoid-page;}
+    a{color:#000; text-decoration:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="mark">TOP40 THEORY</span>
+    <h1>Timeliner<br>User Manual</h1>
+    <p>Bubble-diagram timelines for taking a song apart — structure, phrasing, production, and the craft underneath.</p>
+    <div class="meta">Version 2.3 · Windows &amp; macOS · top40theory.com</div>
+    <div class="weblinks web-only"><a href="https://github.com/asafperes-prog/timeliner-releases/releases/latest/download/Top40-Theory-Timeliner-Manual.pdf">Download the PDF</a> · <a href="../whats-new/">What's new</a></div>
+  </div>
+</header>
+
+<main>
+  <nav class="toc" aria-label="Contents">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#install"><span class="num">1</span>Installing</a></li>
+      <li><a href="#start"><span class="num">2</span>Getting started</a></li>
+      <li><a href="#workspace"><span class="num">3</span>The workspace</a></li>
+      <li><a href="#playback"><span class="num">4</span>Playback &amp; two tracks</a></li>
+      <li><a href="#bubbles"><span class="num">5</span>Working with bubbles</a></li>
+      <li><a href="#layers"><span class="num">6</span>Layers &amp; levels</a></li>
+      <li><a href="#labels"><span class="num">7</span>Label palettes</a></li>
+      <li><a href="#palettes"><span class="num">8</span>Color palettes</a></li>
+      <li><a href="#beats"><span class="num">9</span>The beat grid</a></li>
+      <li><a href="#notes"><span class="num">10</span>Notes &amp; melody</a></li>
+      <li><a href="#pacing"><span class="num">11</span>Pacing graphs</a></li>
+      <li><a href="#waveform"><span class="num">12</span>The waveform</a></li>
+      <li><a href="#snap"><span class="num">13</span>Snapping</a></li>
+      <li><a href="#excerpts"><span class="num">14</span>Excerpts</a></li>
+      <li><a href="#import"><span class="num">15</span>Importing timelines</a></li>
+      <li><a href="#export"><span class="num">16</span>Exporting for Canva</a></li>
+      <li><a href="#projects"><span class="num">17</span>Projects &amp; saving</a></li>
+      <li><a href="#shortcuts"><span class="num">18</span>Custom shortcuts</a></li>
+      <li><a href="#reference"><span class="num">19</span>Keyboard reference</a></li>
+    </ol>
+  </nav>
+
+  <section id="install">
+    <h2 class="sec"><span class="idx">1.</span>Installing</h2>
+    <p><strong>Windows.</strong> Run the Setup file and follow the steps. The installer can make double-clicking open files in the Timeliner: <code>.t40t</code> projects and <code>.v2t</code> Variations files are ticked; <code>.tim</code> Audio Timeliner files are unticked, so they keep opening in Audio Timeliner unless you tick that box. A last, unticked box adds the Timeliner to the <em>Open with</em> list for audio files.</p>
+    <div class="note"><strong>A blue &ldquo;Windows protected your PC&rdquo; screen?</strong> The installer is signed, but Windows can still pause a newly released program before it runs. Click <em>More info</em>, then <em>Run anyway</em>.</div>
+    <p><strong>Mac.</strong> Open the <code>.dmg</code> file. In the window that appears, drag the Top40 Theory Timeliner icon onto the Applications folder, then start it from Applications or Launchpad. The app is signed and notarized by Apple, so it opens without a security warning. Afterwards you can eject the disk image. Timeliner projects get their own icon in the Finder and open with a double-click; a Mac can take until its next restart to show the new icon.</p>
+    <div class="note"><strong>On a Mac.</strong> Wherever this manual shows <kbd>Ctrl/Cmd</kbd>, press <kbd>Cmd</kbd>; for <kbd>Alt/Option</kbd>, press <kbd>Option</kbd>. The big <kbd>delete</kbd> key counts as Backspace, so it <em>merges</em> bubbles; <kbd>fn</kbd>+<kbd>delete</kbd> or <kbd>Cmd</kbd>+<kbd>delete</kbd> removes them. Right-click means Control-click or a two-finger click.</div>
+    <h3>Updates</h3>
+    <p>Once a day, when it starts, the Timeliner quietly checks whether a newer version is out. If there is one, a <strong>Version&nbsp;… is available</strong> button appears at the bottom right of the window: click it to open the download page, then install the new version over the old one (on a Mac, drag it to Applications and choose <em>Replace</em>). Your projects, settings and label sets stay as they are. To check yourself, use Help → <em>Check for Updates</em>; on a Mac it sits in the Top40 Theory Timeliner menu, next to About. Help → <em>Check for Updates Automatically</em> switches the daily check off. The app never downloads or installs anything by itself.</p>
+  </section>
+
+  <section id="start">
+    <h2 class="sec"><span class="idx">2.</span>Getting started</h2>
+    <p class="lede">A project is one song and everything you mark on it. The app opens filling the screen, and the timeline grows to fill the window whenever you resize it. Here is the whole loop, start to finish.</p>
+    <ol class="steps">
+      <li><strong>Add a song.</strong> A new project shows a <em>Drag and drop audio here</em> sign: drop the file on it, or click the sign to browse for one. <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> (File → Add audio track) works too. On Windows you can also right-click an audio file and open it with the Timeliner. WAV, MP3, FLAC, OGG and AIFF all work. The song loads as one bubble spanning its full length, on a layer named after the song, and a project started from a song saves into that song's own folder by default.</li>
+      <li><strong>Play and mark.</strong> Press <kbd>Space</kbd> (or the green Play button at the top left) to play, then tap <kbd>B</kbd> at each boundary you hear. The first tap ends the opening bubble and starts the next; keep tapping through the song.</li>
+      <li><strong>Name what you marked.</strong> New bubbles start blank. Double-click a bubble to name it, press <kbd>F2</kbd> or <kbd>Ctrl/Cmd</kbd>+<kbd>R</kbd>, or select it and click a label in the Labels panel.</li>
+      <li><strong>Save.</strong> <kbd>Ctrl/Cmd</kbd>+<kbd>S</kbd>. The title bar shows a <strong>*</strong> whenever there is unsaved work, and the app asks before you close with changes.</li>
+    </ol>
+  </section>
+
+  <section id="workspace">
+    <h2 class="sec"><span class="idx">3.</span>The workspace</h2>
+    <p>The timeline sits in the middle, with the top bar above it and four panels around it: <strong>Layers</strong>, <strong>Bubble</strong>, <strong>Labels</strong> and <strong>Shortcuts</strong>. The View menu switches each panel on or off.</p>
+    <h3>The top bar</h3>
+    <p>From left to right: the <strong>Play</strong> button (a green triangle; while the song plays it becomes a dark square that stops it), the <strong>Hearing:</strong> drop-down for the track you are listening to (§4), the <strong>Project notes</strong> button (§17), the song overview, and the time.</p>
+    <p>The <strong>song overview</strong> is a thin waveform of the whole song, with the playhead on it and a box around the part the timeline is showing. Click anywhere on it to jump there. Drag the box to scroll the timeline, or drag the box's left or right edge to zoom: a narrower box is a closer look. Double-click the overview to see the whole song again.</p>
+    <h3>Zooming and scrolling</h3>
+    <p>Besides the overview, <kbd>+</kbd> and <kbd>-</kbd> zoom in and out around the playhead, so it stays where it is (the <kbd>=</kbd> key works for zooming in too, no Shift needed). <kbd>Ctrl/Cmd</kbd> with the mouse wheel or a trackpad scroll zooms around the pointer, and <kbd>Ctrl/Cmd</kbd>+<kbd>0</kbd> fits the whole song (or the current excerpt) to the window.</p>
+    <h3>Panels along the bottom or at the sides</h3>
+    <p>The panels start out along the bottom of the window, side by side, with the timeline standing right on top of them: its top layer highest, each new layer pushing the rest upward. The top of the screen stays clear, which is handy when a face cam covers that corner while you record or teach. View → Panels → <em>Sides</em> switches to the classic layout, with Labels and Shortcuts on the left and Layers and Bubble on the right; <em>Bottom</em> switches back. The app remembers your choice.</p>
+    <p>Along the bottom, drag the line between the timeline and the panels to make the panels taller or shorter. Give them enough height and each panel switches to its tall shape, the one it has at the side of the window, leaving more width for the others. The app remembers the height you leave them at. On a laptop the panels start out taller, since a new project's timeline needs little room.</p>
+    <h3>Folding and popping out</h3>
+    <p>Click any panel's title bar to fold it away, and again to open it. Beside the timeline a panel folds to a flat bar; along the bottom it folds to a thin upright strip and hands its width to the panels beside it. The app remembers which panels you leave folded. The small button at the right end of the Layers, Bubble and Labels title bars pops that panel out as a window of its own, which you can drag anywhere (onto a second screen, say); the same button puts it back.</p>
+    <p>The app remembers how you arrange the panels: which ones are popped out, where and how big, which ones you've docked somewhere else, and whether the Shortcuts panel is on. Bottom and Sides each keep an arrangement of their own, so switching between them brings each one back as you left it. View → Panels → <em>Reset Arrangement</em> puts the panels back in their standard places, and popped-out ones come back in. A panel left on a screen that's no longer connected, or bigger than the screen you're on now, comes back onto the screen.</p>
+    <h3>Compact panels</h3>
+    <p>View → <em>Compact Panels</em> trims the panels for a laptop screen. The Layers panel narrows to the width of your layer names, its buttons become symbols (<strong>+</strong> add, <strong>−</strong> remove, <strong>✎</strong> rename, <strong>⧉</strong> duplicate, <strong>↑</strong>&nbsp;<strong>↓</strong> move), and the layer's settings open in a small pop-up from the gear button (<strong>⚙</strong>). Hover over any button to see what it does. On a laptop-sized screen, compact panels are on to begin with and the Shortcuts panel starts folded; once you choose in the View menu, the app keeps to your choice.</p>
+    <h3>The Shortcuts panel</h3>
+    <p>A cheat sheet of the most-used keys. It reads your actual shortcuts, so it shows your own keys if you change them (§18), and Cmd on a Mac. Along the bottom it shows two columns when there is room, or one column that scrolls when there is less; on a screen too narrow even for that, it folds itself to its strip. Click the strip and it opens, and stays open.</p>
+    <h3>Dark mode &amp; playhead color</h3>
+    <p>View → <em>Dark mode</em> turns the timeline area dark, which is easier on the eyes in a dim room. Exports always come out on the light palette, so your Canva work is unchanged. The playhead is navy with a white edge so it reads on any bubble color; View → <em>Playhead color…</em> picks another, and light and dark mode each remember their own.</p>
+  </section>
+
+  <section id="playback">
+    <h2 class="sec"><span class="idx">4.</span>Playback &amp; two tracks</h2>
+    <p><kbd>Space</kbd> stops playback if the song is playing. When it's stopped, <kbd>Space</kbd> plays from the start of the selected bubble; with nothing selected, it goes back to where you last started playing, so you can hear the same passage again and again. If you've moved the playhead yourself since then, it plays from there instead. <kbd>Shift</kbd>+<kbd>Space</kbd> always plays and pauses from wherever the playhead is. The Play button in the top bar does the same as <kbd>Space</kbd>.</p>
+    <p><strong>Moving the playhead.</strong> Click an empty spot on the timeline, click or drag along the ruler, or grab the playhead line itself (away from any bubble) and drag it. Clicking the song overview in the top bar works too. Clicking a bubble while the song is playing jumps straight to its start — the fastest way to compare two phrases back to back.</p>
+    <h3>Loading a vocal and an instrumental</h3>
+    <p>Add a second file the same way you added the first, or drop it onto the window and choose <em>Add to this project as a track</em>. The <strong>Hearing:</strong> dropdown in the top bar shows which track you are listening to, and <kbd>T</kbd> flips between them without the playhead skipping a beat — useful for hearing exactly where the vocal sits against the track. If two files were recorded at different sample rates, the app matches them automatically. File → <em>Remove current audio track</em> takes one out again.</p>
+  </section>
+
+  <section id="bubbles">
+    <h2 class="sec"><span class="idx">5.</span>Working with bubbles</h2>
+    <p><strong>Create and split.</strong> <kbd>B</kbd> splits the bubble under the playhead on the active layer: the lowest one you can see there, whatever its level. Pressing it inside an earlier bubble splits that one, so you can always go back and add a boundary you missed. In a gap, where no bubble is under the playhead, it starts a new bubble on the lowest level showing, running up to the next one. Levels you've hidden (§6) are never changed. While the song plays, B can take off a measured amount for how late you tend to press: see Tap timing (§10).</p>
+    <p><strong>Adjust timing.</strong> Hover near a bubble's left or right edge until the cursor changes, then drag. Every bubble on the layer that starts or ends at that edge moves with it, on every level, so the boundary stays seamless and a section's edge carries the phrases and beats inside it along (hidden ones too, so nothing is left behind out of sight). Hold <kbd>Ctrl/Cmd</kbd> while you drag to move this level only, the bubble and its neighbor on the row, or <kbd>Alt/Option</kbd> to move this bubble's edge alone, opening a gap or an overlap. Drag the middle of a bubble to slide the whole thing in time. Dropped onto other bubbles on its row, it replaces the ones whose middle it covers, so it can never hide on top of one; a bubble it only partly overlaps stays, overlapping. A bubble moved clear of its group joins the group it lands in, so pacing shades (§11) count it with its new neighbors. One that still overlaps its group, like a pickup grouped with the next section, stays in it.</p>
+    <p><strong>Quantize.</strong> Boundaries tapped in by ear are rarely exactly on the beat. With a beat grid set (§9), select bubbles and press <kbd>U</kbd> (Edit → <em>Quantize selected bubbles</em>), and every start and end moves to the nearest beat. A selected bubble brings the bubbles grouped inside it, so clicking a section's bubble and pressing <kbd>U</kbd> lines up everything in it. As with a plain edge drag, every bubble on the layer that shares a moving edge moves with it, so nothing comes apart. Hidden levels and hidden bubbles aren't quantized themselves, only where they share an edge with one that moves, and locked layers (§6) and the very start and end of the song stay put. <kbd>Shift</kbd>+<kbd>U</kbd> switches the step between beats, 8ths, 16ths and bars, and the app remembers it. A bubble shorter than about half a step can't be quantized without being squashed, so it stays where it is and the message suggests a finer step. Each quantize is one undo. To line up one level without moving the rest, press <kbd>Ctrl/Cmd</kbd>+<kbd>U</kbd> (Edit → <em>Quantize selected bubbles, this level only</em>): only the selected bubbles and their neighbors on the same row move, so a verse can go onto its downbeat while its first phrase still starts on the pickup.</p>
+    <p><strong>Select.</strong> Click to select one; if it sits on another layer, that layer becomes the active one, so <kbd>B</kbd> works there next. <kbd>Ctrl/Cmd</kbd>+click adds more. <kbd>Shift</kbd>+click selects the whole run between two bubbles — along one row, or across two levels (from a phrase to a section, say), leaving out anything already inside a selected bubble. Or drag across an empty part of the timeline to draw a selection box. It takes every bubble whose middle it covers, on every row it reaches, so a box over a whole section takes the section and everything inside it, ready to copy, move or delete; to leave a level out, keep the box off its row. Hold <kbd>Ctrl/Cmd</kbd> or <kbd>Shift</kbd> while dragging to add to what's already selected.</p>
+    <p><strong>Move and duplicate a selection.</strong> Drag the middle of a selected bubble and the whole selection moves with it, on any layers and levels, keeping its lengths and spacing; snapping (§13) goes by the edges of the bubble you grabbed and the outer edges of the selection. To copy instead, hold <kbd>Ctrl</kbd> (on a Mac, <kbd>Option</kbd>) and drag from the middle of a bubble: copies of the selection follow the mouse, and the originals stay where they are. Where you drop them, the copies replace the bubbles on their rows whose middle they cover, the same as a moved bubble, so a Fuel/Core copied onto the next bar can't hide on top of the one already there; the status bar says how many were replaced. Groups inside the copy are kept, and a bubble copied without its group joins the group it lands in. The copy brings along the notes on the tracks its layers show, the way copy and paste does (below). The copy only starts once the mouse has moved 10 pixels, so a slightly shaky <kbd>Ctrl</kbd>+click still just selects, and dropping the copies back where they started cancels it. One undo takes the whole drop back. <kbd>Ctrl/Cmd</kbd>+<kbd>D</kbd> (Edit → <em>Duplicate right after</em>) puts a copy of the selection right where it ends, the way a DAW does: select a two-bar phrase, press it, and the next two bars get the same phrase, notes and all. The copy replaces what it lands on, as a paste does (below), and your last <kbd>Ctrl/Cmd</kbd>+<kbd>C</kbd> copy stays as it was. The copy ends up selected, so pressing <kbd>Ctrl/Cmd</kbd>+<kbd>D</kbd> again adds another.</p>
+    <p><strong>Front and back.</strong> Where bubbles on the same row overlap, <kbd>]</kbd> brings the selected ones to the front and <kbd>[</kbd> sends them to the back. A lower level always stays in front of the levels enveloping it, and labels and subheadings are drawn in front of every bubble, so a section's name is never hidden behind its phrases.</p>
+    <p><strong>Rename, color, level.</strong> Double-click, <kbd>F2</kbd> or <kbd>Ctrl/Cmd</kbd>+<kbd>R</kbd> to rename (on a Mac, F2 needs the fn key, so Cmd+R is handier). <kbd>C</kbd> cycles through the layer's color palette (§8); <kbd>Shift</kbd>+<kbd>C</kbd> opens a full color picker. <kbd>Ctrl/Cmd</kbd>+<kbd>↑</kbd> and <kbd>Ctrl/Cmd</kbd>+<kbd>↓</kbd> move a bubble up or down a level.</p>
+    <p><strong>Match colors.</strong> Select the bubbles you want to recolor, then <kbd>Alt</kbd>+click (on a Mac, <kbd>Option</kbd>+click) the bubble whose color you want. Every selected bubble takes its color, on any layer or level, and the selection stays as it is. The bubble you click can be anywhere, on a locked layer too.</p>
+    <p>One case works row by row instead, for bringing a whole row's colors onto another. Select a run of bubbles with a selection box or <kbd>Shift</kbd>+click, reaching past the bubble you're about to click, then <kbd>Alt/Option</kbd>+click a bubble right above or below the run: each selected bubble takes the color of the bubble on that row it lines up with. Select a verse's bubbles on the rhythm layer and <kbd>Alt/Option</kbd>+click one of the lyric lines above them, and every rhythm bubble takes the color of the lyric line it sits under. The row you click keeps its own colors, so a selection box across both layers is safe. If the whole selection sits under the bubble you click, or you picked the bubbles here and there with <kbd>Ctrl/Cmd</kbd>+click, they all take its one color.</p>
+    <p><kbd>A</kbd> (Edit → <em>Paste colors onto selected bubbles</em>) brings a pattern of colors from elsewhere in the song. Copy Chorus 1's phrases (<kbd>Ctrl/Cmd</kbd>+<kbd>C</kbd>), select Chorus 2's and press <kbd>A</kbd>: each takes the color of the copied bubble in the same place, counting from the start of the selection. Copy a single bubble and they all take its color; copy several levels and the lowest one, the phrases rather than the section, decides. Either way only colors change, never labels or times, and it's one undo.</p>
+    <p><strong>Build and fade.</strong> <kbd>F</kbd> cycles a bubble's fill between <em>Solid</em>, <em>Build</em> (swelling like a crescendo) and <em>Fade</em> (the reverse). <kbd>Shift</kbd>+<kbd>F</kbd> cycles how a build or fade looks: <em>Rising fill</em> (a block of color climbing through the bubble), <em>Rising fill + gradient</em> (the climbing block shaded from pale to full), or <em>Gradient</em> (the whole bubble shaded).</p>
+    <p><strong>Group.</strong> Select several bubbles on one layer and press <kbd>G</kbd> to wrap them in a new bubble one level up — a phrase over its beats, a section over its phrases. If a selection box has taken bubbles along with the ones inside them, only the outermost are grouped, and the ones inside keep the groups they're in. <kbd>Shift</kbd>+<kbd>G</kbd> ungroups.</p>
+    <p><strong>Move through them.</strong> <kbd>→</kbd> and <kbd>←</kbd> step to the next and previous bubble, selecting each and moving the playhead. <kbd>Enter</kbd> jumps the playhead to the start of the selected bubble.</p>
+    <p><strong>Merge, hide and delete.</strong> <kbd>Backspace</kbd> merges the selected bubble into the one before it on the same row (or the one after, if it's first in its group); select several side by side and they merge into one, the first keeping its label and color. Anything grouped under a merged bubble moves to the one that remains. <kbd>Delete</kbd> removes the selected bubbles, and so does <kbd>Ctrl/Cmd</kbd>+<kbd>Backspace</kbd>. <kbd>H</kbd> hides them; <kbd>Shift</kbd>+<kbd>H</kbd> brings all hidden bubbles back. Every one of these is undoable with <kbd>Ctrl/Cmd</kbd>+<kbd>Z</kbd>; redo with <kbd>Ctrl/Cmd</kbd>+<kbd>Y</kbd> or <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd>.</p>
+    <p><strong>Tidy up.</strong> Projects from before 2.2 can hide copies stacked exactly on matching bubbles, left there by Ctrl+drag, and bubbles left out of the group they sit in. Both make pacing shades (§11) come out wrong. When a project like that opens, a box offers to tidy it up. It removes the hidden copies, keeping the bubble you see, and puts each bubble left out of its group into the nearest bubble around it. Choose <em>Not now</em> and it asks again next time. Edit → <em>Tidy up project…</em> does the same whenever you like, and one undo puts it all back. Locked layers are left as they are.</p>
+    <h3>Copy and paste</h3>
+    <p>Filled in the lyrics and chords for the first chorus? Copy them to the others instead of doing them again. Select Chorus 1 on your structure layer and press <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> (<em>Copy what's under the selected bubble</em>). That copies everything on the other layers that are switched on, within the chorus's span — every lyric, chord and production bubble, with its label, subheading, colors, fonts, notes and grouping. A bubble counts as inside when its middle is, so a pickup that starts just before the downbeat comes along. Then select Chorus 2 and press <kbd>Ctrl/Cmd</kbd>+<kbd>V</kbd>: the copy lands on the layers it came from, stretched or squeezed to fit Chorus 2, so every change stays lined up with the music. The pasted bubbles are left selected, ready for any changes.</p>
+    <p><kbd>Ctrl/Cmd</kbd>+<kbd>C</kbd> copies just the selected bubbles — one chord, say; select another bubble and paste to put the copy in its place, fitted to its length. With nothing selected, or with the selection still what you copied, <kbd>Ctrl/Cmd</kbd>+<kbd>V</kbd> pastes at the playhead at the original lengths, and <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> always does. On the layers being pasted into, a paste replaces only the levels it brings, inside that span: paste a phrase and the section it lands in stays standing, while a copied section that brings its phrases replaces the section there too. Pasted bubbles join the group they land in, and a bubble whose group the paste replaced joins the pasted one it overlaps most, so a pickup stays with its section. So after fixing Chorus 1 you can simply paste again; other layers are never touched, and the whole paste is one undo. A copy lasts until you quit and pastes into other projects too: layers are matched by name, and a missing one is created with the same settings. Locked layers (§6) are left out of both: <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> doesn't copy from them, and a paste never changes them. In a text box (a label, a note), the same keys copy and paste text as usual.</p>
+    <p><strong>Notes come along.</strong> A copy also takes the notes (§10) on the note tracks its layers show. With <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>, that's every other layer that's switched on and unlocked, even one with no bubble inside the span. Notes keep their rhythm instead of stretching: a paste moves them by whole beats, from the start of the copied section to the start of the one you paste into, so they land on the same beats of the bar. A pickup comes too when its bubble does, and a quick pickup, a note starting a 16th or so before the section's edge, counts as part of the section. On each track, the stretch the notes cover is replaced, rests and all, the way bubbles are. Pasted into a shorter section, the notes past its end are left out; into a longer one, its own notes after the pasted ones stay. A track with no notes in the copied stretch doesn't come along, so it can't wipe out notes you've already added elsewhere.</p>
+    <p>In another project, notes go into the track with the same name, made if it isn't there. A layer the paste creates shows that track, and so does a matching layer that shows no notes yet. That project needs a beat grid: without one, the bubbles paste and the app says the notes didn't. A track shown on a locked layer is left alone. Edit → <em>Paste notes too</em> (on to begin with) switches all this off, so a paste brings only bubbles and leaves the notes as they were. A <kbd>Ctrl</kbd>+drag copy (above) brings notes the same way, and <em>Paste notes too</em> switches that off as well. A plain drag leaves notes where they are, since they belong to the music.</p>
+    <h3>Typing lyrics</h3>
+    <p>Instead of pasting a lyric into its bubbles phrase by phrase, select the bubble where it starts and press <kbd>R</kbd> (Edit → <em>Type lyrics</em>). A box opens beside the layer. Paste the whole lyric, and each line goes to the next bubble along that row, showing on the timeline as you type. <em>OK</em> keeps it as one undo step; <em>Cancel</em> puts every label back.</p>
+    <ul>
+      <li>Press <kbd>Enter</kbd> in the box to split a line over two bubbles, or <kbd>Backspace</kbd> at the start of a line to join it to the one before, until the lines match the bubbles.</li>
+      <li>Blank lines are skipped, and so are headings in square brackets, the way lyric sites write them: [Chorus], [Verse 2].</li>
+      <li>A line with just <code>.</code> leaves that bubble's label as it is.</li>
+      <li>Select several bubbles on a row to fill just those. A selection box over a whole verse fills its phrases, not the verse. Hidden bubbles are passed over.</li>
+    </ul>
+    <p>If the bubbles already have labels, the box opens with them, one per line, ready to correct.</p>
+    <h3>The Bubble panel &amp; notes</h3>
+    <p>The Bubble panel shows the selected bubble's label, with an optional <strong>subheading</strong> in the box under it, its exact start and end times, its level and color (click the color swatch to change it), its opacity, its fill and fill style, its pacing shade (§11), and full font control: family, size, <strong>B</strong> and <em>I</em> buttons for bold and italic, and whether long text may slide past the bubble's edges. While the fill is Solid, the <em>Style</em> box reads <em>For Build / Fade</em> and stays grayed out, since the style only applies to builds and fades.</p>
+    <p>A <strong>subheading</strong> is a second, smaller line under the label — a technique under a section name, a lyric under a chord. It uses the label's font, two points smaller and never bold, and the two lines share the bubble's top row; big text never pokes out above the bubble. Labels exported to PDF and SVG carry it too.</p>
+    <p>The box beside the color swatch is the bubble's own <strong>opacity</strong>. While it reads <em>Layer 82%</em> (or <em>Level 40%</em>), the bubble has none of its own and follows its layer or level (§6); the arrows step from there, and stepping below 10% (or typing 0) goes back to following. The <em>Level font</em> button beside the level sets the font for a whole level (§6).</p>
+    <p>The <strong>Notes</strong> box takes whatever room is left and holds longer commentary; a note is saved when you click elsewhere. Bubbles with notes show a small dot, and hovering one reveals the note as a tooltip. With several bubbles selected, a change applies to all of them (times and notes, to one bubble at a time). Notes about the whole song go in Project notes (§17).</p>
+  </section>
+
+  <section id="layers">
+    <h2 class="sec"><span class="idx">6.</span>Layers &amp; levels</h2>
+    <p>A <strong>layer</strong> is an independent horizontal track — Songwriting on one, Production on another. The Layers panel lists them: the tick controls whether a layer is shown, and the highlight marks the <em>active</em> layer, the one <kbd>B</kbd> adds to. Click a layer's name, click one of its bubbles, or press <kbd>1</kbd>–<kbd>9</kbd> to make it active. The buttons add, rename and remove layers, and <strong>Duplicate</strong> copies a layer with all its bubbles and grouping, so you can rework a copy while keeping the original. To change the order, drag a layer by the handle at the right end of its row (three short lines), or use the Up and Down buttons. The list always has room for four layers, and grows to show up to ten before it scrolls.</p>
+    <p><strong>Levels</strong> are the rows within a layer — beats at the bottom, phrases above, sections above those. Higher levels envelop the ones beneath, the way the original Timeliner nests bubbles. Grouping builds these levels for you.</p>
+    <h3>Locking a layer</h3>
+    <p>Lock a layer you've finished, or one that's only there for reference, and it can't be changed by accident. Click the padlock in its row of the Layers panel (just left of the handle), or the one by its name on the timeline (pointing at the name shows an open padlock), or press <kbd>L</kbd> to lock the active layer. A locked layer's bubbles can't be selected, dragged, duplicated, split with <kbd>B</kbd>, recolored, or brought back with <kbd>Shift</kbd>+<kbd>H</kbd>, and its notes (§10) can't be changed. Click one and the playhead jumps to its start instead (while the song plays, it carries on from there), so a locked Bars &amp; beats layer is still handy for getting around; dragging from one draws a selection box, as on empty space. Selection boxes pass over it, <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> leaves it out, and pastes leave it alone. Its settings in the Layers panel still work, so you can still show, hide or restyle it. Click the padlock again, or press <kbd>L</kbd>, to unlock; locking can be undone like any change. A new Bars &amp; beats layer (§9) starts out locked.</p>
+    <h3>Layer height</h3>
+    <p>Any layer's rows can be made taller or shorter. In the column of layer names at the left of the timeline, point at the layer's edge (its bottom edge with the panels at the sides, its top edge with them along the bottom; a small grip marks it) until the pointer becomes an up-and-down arrow, then drag. Short rows fit more layers on a laptop screen; tall ones give long labels room. The height is saved with the project and carries into exports.</p>
+    <h3>Per-layer settings</h3>
+    <p>The <em>Selected layer</em> box beside the list holds the active layer's settings; with compact panels (§3), they open from the gear button instead.</p>
+    <ul>
+      <li><strong>Timestamps</strong> — tick the box to show a start-time label under the bubbles of one level, and choose the level in <em>Show at level</em> underneath. Point them at your section level (Verse, Chorus…) rather than the crowded bottom row and you get one clean timestamp per section.</li>
+      <li><strong>Notes</strong> — which note track the layer shows under its bubbles, if any. The buttons beside it switch between notation and bars or hide the notes, leaving the contour and range bands, and the stairs button shows the melodic contour (§10).</li>
+      <li><strong>Bubble shape</strong> (or just <em>Shape</em>) — <em>Round</em> or <em>Square</em>; <kbd>Q</kbd> switches the active layer. Boxes suit beat- and rhythm-based breakdowns.</li>
+      <li><strong>Gap between bubbles</strong> (or just <em>Gap</em>) — up to 6 pixels of space between neighboring bubbles, so each boundary stands out (§11).</li>
+      <li><strong>Color for new bubbles</strong> (or just <em>New bubbles</em>) — the swatch shows the color new bubbles on this layer start with; click it to change it. The <em>Palette…</em> button beside it opens Color palettes (§8).</li>
+      <li><strong>Pacing shades</strong> (or just <em>Shades</em>) — lightens bubbles in a repeating pattern, every other one or every 3, 4, 5, 6 or 8, so how often the layer changes reads at a glance (§11). To shade only some bubbles, use the Shade box in the Bubble panel instead.</li>
+      <li><strong>Opacity</strong> — a slider fades the layer's fills, so a translucent Production layer can sit over its own overlaps without hiding them. The drop-down beside it chooses what the slider sets: <em>Whole layer</em>, or one level. A level given its own opacity shows it in the list (<em>Level 1 (40%)</em>) and keeps it when you change the whole layer; the ↺ button sends it back to following the layer. A single bubble can have its own too (§5). The most specific setting wins: the bubble's, then its level's, then the layer's.</li>
+      <li><strong>Show levels</strong> and <strong>Show labels</strong> — a column of tick boxes for each level. The first row hides or shows a level's bubbles; with the bottom levels hidden, <kbd>B</kbd> and the arrow keys work on the lowest level still showing. The second row hides just a level's text — handy for lyrics or quick Fuel/Core changes that only read once you zoom in. On a layer showing notes, a third row, <em>Show ranges</em>, adds range bands (§10). Exports follow what's on screen.</li>
+      <li><strong>Hidden levels keep their space</strong> (or <em>keep room</em>) — ticked, hiding a level leaves its row empty, so the levels above it stay exactly where they were; unticked, the rows close up. New layers start with it ticked; layers saved before version 1.4 start unticked, so they look as they always did. While Minimal view is on, hidden levels always close up and the box is grayed out (§11).</li>
+      <li><strong>Count for sync lines</strong> (or just <em>Sync lines</em>) — whether this layer's changes count toward the sync lines (§11). A Bars &amp; beats layer starts unticked.</li>
+    </ul>
+    <h3>Level fonts</h3>
+    <p>Each level can have its own font — big and bold for sections, say. Style one bubble on that level the way you want in the Bubble panel, then open <em>Level font</em> beside its level and choose <em>Use this font for all of level 2</em>. Every bubble on that level updates at once, and new ones there (from splitting or grouping) start in it. If some bubbles already have a font you set by hand, it asks whether to change those too. Changing one bubble's font later gives just that bubble its own; <em>Go back to level 2's font</em> undoes that, and <em>Clear level 2's font</em> removes the level's font.</p>
+    <p>To keep a level font for every project, choose <em>Save as my default for level 2</em>. New layers, the first layer of a new project, and imported <code>.v2t</code> and <code>.tim</code> files then start with it (the generated Bars &amp; beats layer doesn't, so its numbers stay small). <em>Use my default level fonts</em> gives your defaults to an existing layer in one click, and <em>Forget my default</em> drops one. Defaults go by level number, so they suit songs built the same way — sections on level 2 in every file, say.</p>
+  </section>
+
+  <section id="labels">
+    <h2 class="sec"><span class="idx">7.</span>Label palettes</h2>
+    <p>The Labels panel holds tabbed sets of one-click labels, each with its own color. It starts with a <strong>Structure</strong> set (Intro, Verse, Pre-chorus, Chorus, and so on) and a <strong>Technique</strong> set (FuelCore, Fuel, Core, Phrase Syncopation, Space Filler, Flow Phrase, Assonance, Spotlighting, Melodic Preview, Lyrical Preview, Rocket &amp; Feather) that you can extend with your own terms.</p>
+    <p>Select one or more bubbles, then click a label to apply it — text and color together, or text only if you untick <em>Apply the label's color too</em> (<em>Apply its color too</em>, along the bottom). If the layer already has bubbles with that label, the new one takes their color rather than the label's own, so a layer recolored with a palette (§8) stays consistent. The labels look faded while nothing is selected, as a reminder to pick a bubble first. Hover over a label to see its full name and its key: <kbd>Alt/Option</kbd>+<kbd>1</kbd> through <kbd>Alt/Option</kbd>+<kbd>9</kbd> apply the first nine labels on the current tab, counting across the rows, so a listen-through becomes: <kbd>B</kbd>, <kbd>Alt/Option</kbd>+<kbd>4</kbd> for Chorus, <kbd>B</kbd>, <kbd>Alt/Option</kbd>+<kbd>2</kbd> for Verse.</p>
+    <p>The <em>Edit sets</em> menu at the corner of the tabs adds a label, starts a new set, or renames and removes sets. Along the bottom, when room is short, a long label shortens to &ldquo;Phrase Sync…&rdquo;; hovering shows the whole name. Right-click any label (faded or not) to rename, recolor or remove it. Your sets are saved for you and follow you across every project and session — add a label once and it is there for every song from then on.</p>
+  </section>
+
+  <section id="palettes">
+    <h2 class="sec"><span class="idx">8.</span>Color palettes</h2>
+    <p>A palette is a set of colors that go together. Open them with the <em>Palette…</em> button in the Layers panel, or Edit → <em>Color palettes</em> (<kbd>O</kbd>). The built-in ones come in three kinds. <strong>Sections</strong> palettes give each section or technique its own color, with neighbors that contrast: Classic, Top40 Theory, Tropical, Sunset, Pastel and Color-blind safe. <strong>Low to high</strong> palettes run from one end to the other, for layers that measure something — vocal range, energy, tension: Heat, Aurora, Ember, Sunrise, Tension, Ocean, Forest, Grape, Ink and the Top40 Theory ramp. <strong>One per layer</strong> palettes give each layer a color of its own, top to bottom, for pacing graphs: Pacing (§11).</p>
+    <p>Pick one, tick the layers it should go on (<em>All</em> ticks every one; a locked layer can't be ticked and keeps its colors), and choose how:</p>
+    <ul>
+      <li><strong>Recolor the bubbles now</strong>, matched by <em>Current color</em>, a straight swap (every color in use becomes one palette color, so bubbles that share a color now still share one, and a highlight stays different from the rest), by <em>Label</em> (every Verse one color, every Chorus another — &ldquo;Verse 2&rdquo; counts as Verse — with unlabeled bubbles grouped by level in paler tints, so the sections stand out), by <em>Level</em> (each level its own color; a low-to-high palette runs from the bottom level up, so Low is blue and High is red in Heat), or <em>Top down</em> (below). Sections palettes start on Current color and low-to-high ones on Level, and the app remembers what you last chose for each kind. A one-per-layer palette needs no matching, since each layer takes its own color. The <em>Levels</em> tick boxes underneath choose which levels get the new colors: untick one to keep its colors, like highlights on the lowest level or sections you've colored by hand.</li>
+      <li><strong>Only for new bubbles from now on</strong> — the bubbles keep their colors, and the palette becomes the one <kbd>C</kbd> cycles through and grouping picks from on those layers.</li>
+    </ul>
+    <p>Either way, each layer's color for new bubbles becomes the palette's first color (with a one-per-layer palette, the layer's own color), and a recolor is one undo.</p>
+    <p><strong>Top down.</strong> This one colors the sections by label, the way <em>Label</em> does, then carries each section's color down through the levels under it, a third lighter each level down: a red chorus over pink phrases over paler beats. Each section reads as one block of color, and its levels still stand apart. A section is any bubble with nothing above it, so an Intro on level 1 and a Verse on level 2 both count, and the first level under each comes out equally light. The <em>Levels</em> tick boxes work here too: untick the top level and the level below it becomes the sections; untick the lowest to keep its colors.</p>
+    <p><strong>Carry section colors down.</strong> To keep the section colors you have and only tint the levels under them, select the sections (click one and <kbd>Ctrl/Cmd</kbd>+click more, or draw a box over the whole song) and press <kbd>D</kbd> (Edit → <em>Carry section colors down</em>). A box lists the levels under them: untick any that should keep their colors, like a row of Fuel/Core highlights, and it remembers that next time. The sections keep their colors, locked layers are left alone, and it's one undo.</p>
+    <p><strong>Your own palettes.</strong> <em>Duplicate</em> copies any palette for you to change, and <em>From this layer's colors</em> captures the colors a layer uses now — handy for a look you like in an imported file. In your own palettes, click a color to change it, use + and − to add or remove colors, rename them, and set them to Sections, Low to high or One per layer. Like the label sets, they're saved for you across projects; a project keeps its own copy of its colors, so it looks the same on a computer that doesn't have them.</p>
+  </section>
+
+  <section id="beats">
+    <h2 class="sec"><span class="idx">9.</span>The beat grid</h2>
+    <p>Edit → Beat grid (<kbd>Ctrl/Cmd</kbd>+<kbd>T</kbd>) listens to the song and proposes a tempo and a downbeat. In the dialog you can type a BPM, halve or double it, set the beats per bar, or park the playhead on a downbeat you are sure of and press <em>Downbeat at playhead</em>. <em>Detect again</em> re-runs the analysis.</p>
+    <p>The grid on the timeline moves as you change anything in the dialog, so you can watch the downbeats line up with the waveform before you press OK; Cancel puts it back. The arrows beside the downbeat, or the mouse wheel over it, move it 5 milliseconds at a time. <em>Line up with the audio</em> keeps your tempo and moves the downbeat onto the beats of the track you're hearing (the instrumental works best), at most half a beat either way, so the bar you marked as bar 1 stays bar 1. The quickest way to an exact grid: type the tempo, park the playhead near a downbeat, press <em>Downbeat at playhead</em>, then <em>Line up with the audio</em>.</p>
+    <p>Once set, <kbd>M</kbd> shows or hides the grid lines — faint on beats, stronger on downbeats — and the ruler picks up bar numbers. Tick <em>Create a Bars &amp; beats layer</em> to turn the grid into real bubbles: numbered bars, with beats nested inside. The new layer starts out locked (§6), so selection boxes, drags and pastes leave it alone, and it's left out of sync lines (§11); click its padlock when you want to change it. Once the project has one, the box reads <em>Update the Bars &amp; beats layer</em> and starts ticked: when you change the grid, OK rebuilds its bars and beats on the new one, keeping their colors. (It goes by the name, so a layer you've renamed is left alone.) Notes always move with the grid by themselves. The grid is also what notes sit on (§10), and what <kbd>U</kbd> quantizes bubbles to (§5).</p>
+    <div class="note"><strong>On detection.</strong> Tempo detection gets most steady studio pop right, but not every song. Check whether it picked half or double the tempo (the Half/Double buttons fix it), and whether the downbeat landed on beat one (the playhead button is the sure answer). If the grid drifts away from the beats as the song goes on, the tempo is off: look up the song's tempo, type it in, and line the downbeat up with the audio.</div>
+  </section>
+
+  <section id="notes">
+    <h2 class="sec"><span class="idx">10.</span>Notes &amp; melody</h2>
+    <p class="lede">Bubbles show where things change; notes show what happens inside them. Put a melody's rhythm on a layer, written the way a pop lead sheet would write it, then type its scale degrees to draw its contour, the shape of the melody, right over the bubbles.</p>
+    <div class="note"><strong>Set the beat grid first.</strong> Notes sit on the grid (§9), so a song needs one before it can take notes; without it, the app tells you so. Notes are placed in beats rather than seconds, so if you correct the tempo or the downbeat later, every note moves with the grid and stays on its beat.</div>
+    <h3>Note tracks</h3>
+    <p>A project can hold several <strong>note tracks</strong>: the lead vocal, a backing part, a synth hook. To start one, make a layer active, open the <em>Notes</em> drop-down in its settings in the Layers panel, choose <em>New track…</em> and give it a name. The layer now shows that track in a strip directly under its bubbles. (These are musical notes; written notes about a bubble go in the Bubble panel, §5.) Another layer can show the same track: pick its name in that layer's drop-down. <em>None</em> takes the strip away and leaves the notes as they are.</p>
+    <p><em>Rename track…</em> and <em>Delete track…</em> act on the track the layer shows. Deleting a track removes its notes from every layer showing it, and <kbd>Ctrl/Cmd</kbd>+<kbd>Z</kbd> brings them back.</p>
+    <h3>Adding notes by clicking</h3>
+    <p>Press <kbd>N</kbd> (Edit → <em>Edit notes</em>) to start editing notes. A <strong>♪ Notes · 16ths</strong> tag in the corner of the ruler shows it's on. Now a click on a layer showing notes, anywhere on it, bubbles included, works on its notes instead of its bubbles:</p>
+    <ul>
+      <li><strong>Click empty space</strong> to add a note one step long at the nearest step. A faint ghost shows where it will land.</li>
+      <li><strong>Click and drag</strong> for a longer note, in whole steps.</li>
+      <li><strong>Click a note</strong> to select it (see Selecting notes, below).</li>
+    </ul>
+    <p>The step starts as a 16th. <kbd>Shift</kbd>+<kbd>N</kbd> steps through 16ths, 8ths and quarters; the tag shows which, and the app remembers your choice. Notes on a track never overlap: a new one fits into the room between its neighbors. Every change can be undone. When the steps are too close together to aim at, the app says so: zoom in with <kbd>+</kbd>. Press <kbd>N</kbd> again when you're done, and clicks select bubbles again.</p>
+    <h3>Tapping notes in time</h3>
+    <p>For a whole phrase, tapping is faster. With note editing on, make the layer active, play the song and tap <kbd>K</kbd> along with the melody: press when a note starts, hold it for as long as the note lasts, and let go when it ends. Each note snaps to the current step, counted from the moment you pressed or let go of the key, even if the app was busy just then, less your tap timing (below), so the notes land where you heard them.</p>
+    <p>A tapping pass replaces the old notes it covers, from its first tap on, so a phrase that came out wrong can simply be tapped again. While you tap, the new notes show as bars; the notation catches up when the song stops, and if your taps leaned early or late, the whole pass slides onto the grid (see Tap timing, below). The pass ends when the song stops (or when you undo, open a file or switch note editing off), and <kbd>Ctrl/Cmd</kbd>+<kbd>Z</kbd> takes back the whole pass in one step. <kbd>K</kbd> isn't in a menu, since it needs a press and a release, but it is on the Shortcuts panel.</p>
+    <p>Your finger has to come up between taps, which would leave a sliver of rest between notes that should touch. Edit → <em>Tapping: close short gaps</em> (on to begin with) takes care of it: a note lasts right up to the next tap when the gap is an 8th or less, or when you held it for more than half the time until the next tap. So two quarter notes tapped a little short come out as quarters, while a quarter followed by a real quarter rest, or a short stab, keeps its rest. Switch it off to keep every rest exactly as tapped, for a staccato verse, say, where every note is short and detached.</p>
+    <h3>Tap timing</h3>
+    <p>Sound reaches you a little after the app plays it, and everyone presses a key a little after the beat, or before it, by an amount of their own. Edit → <em>Tap timing…</em> holds how much is taken off where <kbd>K</kbd> taps land. Until you set it, K uses your sound card's own figure for its delay. Calibrating measures you instead:</p>
+    <ul>
+      <li>Set a beat grid lined up with the song (§9), and put the playhead a bar or two before a stretch with a steady beat.</li>
+      <li>Click <em>Calibrate…</em> beside K. The song plays: tap <kbd>K</kbd> on every beat, 8 times in a row. It stops by itself and fills in how far from the beat your taps landed.</li>
+      <li>Click <em>OK</em> to keep it. You can also type an amount, or nudge it 5 ms at a time.</li>
+    </ul>
+    <p><strong>After each pass.</strong> Tapping a melody, most people press a little later (or earlier) than when they tap along to the beat. So when a tapping pass ends, the app checks whether its notes leaned early or late on the whole. If they did, the whole pass slides onto the grid, every note by the same amount, so the rhythm keeps its shape. The message says how much, and K takes that amount from then on, so your next pass lands in place as you tap. A pass of only a few notes, or one that doesn't sit on 16ths (triplets, say), is left as tapped.</p>
+    <p><kbd>B</kbd> has its own amount in the same box, for bubbles split while the song plays. It starts at 0 ms, so B cuts right at the playhead until you calibrate it, tapping B on the beats the same way; with the song stopped, B always cuts at the playhead. The amounts are remembered on this computer, so calibrate again on another computer or with other headphones or speakers. If the taps were too uneven to measure, the box says so: try again, tapping steadily. <kbd>Esc</kbd> or <em>Stop</em> ends a calibration early.</p>
+    <p><strong>The playhead.</strong> The last amount in the box holds the playhead back while the song plays, by as long as the sound takes to reach you, so the playhead crosses each hit just as you hear it. When you stop, it stops where you heard the music stop, so stopping on a hit by ear puts the playhead right on it, which helps with <em>Downbeat at playhead</em> (§9). It starts at your sound card's own figure. If the playhead still runs ahead of the sound or behind it, click <em>Play</em> beside the amount and change it until the playhead crosses the hits on the waveform as you hear them, then click <em>OK</em>.</p>
+    <h3>Selecting notes</h3>
+    <p>Tapped notes can come out a 16th early, or a note a little too long. To fix them without entering them again, turn on note editing (<kbd>N</kbd>) and click a note to select it; it turns blue. <kbd>Ctrl/Cmd</kbd>+click adds a note or takes it away, <kbd>Shift</kbd>+click selects the run from the last note you clicked, and <kbd>Shift</kbd>+drag draws a box that selects every note it touches (start it anywhere on the layer, even on a note). <kbd>Esc</kbd> lets go. Then:</p>
+    <ul>
+      <li><kbd>←</kbd> and <kbd>→</kbd> move the selected notes a step earlier or later (the note step, <kbd>Shift</kbd>+<kbd>N</kbd>); dragging one moves them all.</li>
+      <li><kbd>Shift</kbd>+<kbd>←</kbd> and <kbd>Shift</kbd>+<kbd>→</kbd> make them a step shorter or longer, and dragging a note's right end changes its length: trim two tied 16ths down to one, or stretch a 16th to an 8th.</li>
+      <li><kbd>U</kbd> quantizes them to the note step: every start and end goes to the nearest step (one exactly halfway goes later). No note is deleted and none end up overlapping; when that can't be done, the message suggests a smaller step.</li>
+      <li><kbd>↑</kbd> and <kbd>↓</kbd> move their pitches a scale step, <kbd>Shift</kbd>+<kbd>↑</kbd> and <kbd>Shift</kbd>+<kbd>↓</kbd> an octave. Sharps and flats stay sharp or flat, and notes with no pitch yet are left alone.</li>
+      <li><kbd>P</kbd> types pitches for just these notes, and <kbd>\</kbd> (backslash) breaks or joins the contour before them (both below).</li>
+      <li><kbd>Delete</kbd> or <kbd>Backspace</kbd> (on a Mac, <kbd>delete</kbd>) removes them.</li>
+    </ul>
+    <p>Moving and lengthening stop at the next note, so notes never run into each other. While no notes are selected, the arrow keys step through bubbles as usual.</p>
+    <p><strong>Copying notes.</strong> <kbd>Ctrl/Cmd</kbd>+<kbd>C</kbd> copies the selected notes; put the playhead where they go and press <kbd>Ctrl/Cmd</kbd>+<kbd>V</kbd>. They land on the active layer's note track, moved by whole beats so each note keeps its place in the beat, and replace the notes in that stretch. (<kbd>Ctrl/Cmd</kbd>+<kbd>V</kbd> pastes whatever you copied last, notes or bubbles.) <kbd>Ctrl</kbd>+drag (on a Mac, <kbd>Option</kbd>+drag) copies them as you drag. <kbd>Ctrl/Cmd</kbd>+<kbd>D</kbd> puts a copy right after them, a whole bar later (or as many bars as they cover), so a phrase that starts on a pickup copies onto the next bar's pickup. The copies end up selected, ready to move or copy again, and each of these is one undo.</p>
+    <h3>Rhythm notation or bars</h3>
+    <p>To begin with, the strip shows the notes as <strong>rhythm notation</strong>: one line, stems up, barlines from the grid, and each note at its real moment, so it lines up with the bubbles and the waveform. It's written the way a pop lead sheet would write it:</p>
+    <ul>
+      <li>A note that crosses a barline is written as tied notes. So is one that crosses the middle of the bar (unless it starts on beat 1), and one that starts on a 16th off-beat and crosses a beat. A syncopated quarter on an 8th off-beat (8th, quarter, 8th) stays a single note.</li>
+      <li>Lengths that have no single symbol are tied, like a quarter tied to a 16th.</li>
+      <li>Rests fill the silences in any bar that has notes. Bars with no notes stay empty.</li>
+      <li>16ths are beamed within each beat, and 8ths over beats 1–2 and 3–4, never across the middle of the bar. A lone 8th or 16th gets a flag.</li>
+    </ul>
+    <p>The first two buttons beside the Notes drop-down switch a layer between <strong>♩</strong> notation and <strong>▬</strong> bars: plain bars, each as long as its note, in a thinner strip. Zoomed out too far for the symbols to fit, notation shows as bars by itself until you zoom back in. The third, a note with a line through it, hides the notes on that layer: the strip goes and the layer gets shorter, while its contour and range bands still show, the pitch without the rhythm. Show the same track as notation on another layer, and each layer's bubbles can be colored for its own story. With note editing on, clicks on a layer hiding its notes pick bubbles as usual, and <kbd>P</kbd> still types pitches on it.</p>
+    <h3>Typing pitches</h3>
+    <p>Rhythm is the slow part; pitches are quick. Select the bubbles you want pitches for, a phrase or a whole section like Verse 1, and press <kbd>P</kbd> (Edit → <em>Type pitches</em>). A box opens beside the layer that shows the notes, covering just the notes inside the selection, and its title names the stretch. With nothing selected, it starts from the note at the playhead and runs to the end of the song. With note editing on and notes selected (above), it covers just those notes. The notes are the active layer's; if the layer you clicked shows none, <kbd>P</kbd> uses the project's note track, as long as there's only one (with more, click a bubble on the layer whose notes you want). Type the scale degrees, one for each note: <code>3 5 6 6 5 3</code>, or <code>356653</code> without the spaces. The notes you're typing for turn blue, and the contour draws as you type. <em>OK</em> keeps the pitches as one undo step; <em>Cancel</em> puts everything back. If the notes already have pitches, the box opens with them, ready to correct. The line under the typing counts the notes you've typed for, and numbers past the end of the selection are left out.</p>
+    <ul>
+      <li>Each number goes to the nearest pitch with that degree, counted from the note before, so steps and small leaps need nothing more.</li>
+      <li>For a bigger leap, add <code>'</code> to go an octave above that nearest pitch, or <code>,</code> to go an octave below. A plain <code>5</code> right after a <code>1</code> lands on the 5 below, so <code>1 5'</code> leaps up a 5th. In the box, <kbd>Shift</kbd>+<kbd>↑</kbd> and <kbd>Shift</kbd>+<kbd>↓</kbd> add the marks to the number at the cursor.</li>
+      <li><code>b3</code> and <code>#4</code> are flat and sharp degrees.</li>
+      <li>A <code>.</code> skips a note, which keeps the pitch it had.</li>
+    </ul>
+    <p>There's no key to set. Pitches are kept as scale degrees counted from the 1, so a melody looks the same in any key.</p>
+    <h3>The melodic contour</h3>
+    <p>Once a track has pitches, its layer can draw the <strong>contour</strong>: a stair-step line over the bubbles, one flat step for each note, at its pitch. It switches on by itself the first time you type pitches, and the stairs button beside the Notes drop-down switches it off and on. The whole layer shares one scale, with the song's lowest note near the bottom of the layer and its highest near the top. Every scale degree is an equal step, with sharps and flats halfway between, so a leap looks like a leap wherever it happens. A faint dashed line marks each 1, the degree numbers sit on the steps when there's room for them, and the line breaks between phrases: it runs on through each bubble on the layer's lowest level and breaks where the next one starts. A note goes with the bubble it starts in, so a pickup that starts before its phrase's bubble goes with the phrase before. Notes in no bubble break at a rest of a beat or longer. A taller layer gives the contour more room: drag its edge in the names column (§6).</p>
+    <p><strong>Breaking or joining by hand.</strong> Where the line should go another way, at a breath inside a phrase or a pickup that belongs with the phrase after it, select the note just after the spot (note editing on) and press <kbd>\</kbd> (backslash). The line breaks there if it joined, or joins if it broke; press it again to go back to what the phrases say. With several notes selected, each one flips. Exports draw the line the same way.</p>
+    <h3>Range bands</h3>
+    <p>How wide does each phrase or section reach? On a layer showing notes, the Layers panel adds a <strong>Show ranges</strong> row to the tick boxes for each level. Tick a level, and each of its bubbles shows a see-through band from its lowest note to its highest, on the contour's scale, labeled with the interval it spans: <em>5th</em>, <em>octave</em>, <em>10th</em>. A bubble counts the notes that start inside it; a pickup that starts before it belongs to the bubble before. Tick two levels, phrases and sections say, and their labels keep apart: the lowest ticked level labels its bands at the top right, the levels above it at the top left.</p>
+    <p>Notes, the contour and range bands all come out in exports (§16); a layer hiding its notes exports without them.</p>
+    <p class="credit">Music symbols: Bravura by Steinberg Media Technologies, SIL Open Font License.</p>
+  </section>
+
+  <section id="pacing">
+    <h2 class="sec"><span class="idx">11.</span>Pacing graphs</h2>
+    <p class="lede">A pacing graph shows how often each part of a song changes, with one layer above another: the form, the lyric lines, the melody's pitches, its rhythm. Laid out together, it's easy to see where they move as one and where one of them runs faster than the rest. Here are the tools for drawing one, in the order you'd use them.</p>
+    <h3>One layer for each element</h3>
+    <p>Give each thing you're pacing a layer of its own, in the order you want them from top to bottom (say form, lyrics, pitch and rhythm), and mark its changes with <kbd>B</kbd> as usual. On a pitch or rhythm layer, the notes themselves can sit right under the bubbles (§10). A Bars &amp; beats layer makes a handy reference underneath; it starts out locked (§6), so it stays out of the way.</p>
+    <h3>The Pacing palette</h3>
+    <p>Open <em>Palette…</em> in the Layers panel (or Edit → <em>Color palettes</em>), choose <strong>Pacing</strong> under <em>One per layer</em>, click <em>All</em> to tick every layer, and Apply. Each layer gets a color of its own, top to bottom: Top40 Theory blue for the first, then orange, green and pink. A locked layer is skipped and keeps its colors, so Bars &amp; beats stays as it is. On each layer the lowest level gets the full color and the levels above it a lighter tint, so the sections and groups stand behind the bubbles doing the pacing. With more layers than colors, the colors go round again in lighter tints. The palette works best together with pacing shades.</p>
+    <h3>Pacing shades</h3>
+    <p>The Layers panel's <strong>Pacing shades</strong> setting lightens bubbles in a repeating pattern, so how often a layer changes reads at a glance. Choose <em>Every other</em>, or <em>Every 3</em>, <em>4</em>, <em>5</em>, <em>6</em> or <em>8</em>: the first bubble of every group of that many keeps its full color, and the rest are drawn a lighter shade of it. <em>Every other</em> alternates full and light, so each change shows even where neighbors share a color; <em>Every 4</em> picks out the first of each four, like the first line of each quatrain or the downbeat of each bar. The drop-down beside it sets how much lighter: <em>Subtle</em> keeps more of the color, while <em>Strong</em> goes much paler and gives the Pacing palette's colors the light shades they were chosen to pair with.</p>
+    <p>Counting starts again in each group, like beats in a bar, and works on every row of the layer; hidden bubbles don't count. Only the drawing changes, never the bubbles' own colors, so choosing <em>Off</em> brings them straight back.</p>
+    <p><strong>Shades on chosen bubbles.</strong> To shade only part of a layer, one section's phrases say, select those bubbles and use the <strong>Shade</strong> box in the Bubble panel. <em>Every other</em>, <em>Every 3</em> and the rest count straight across the selected bubbles, row by row, whatever the groups, so a verse split into two groups of three phrases comes out dark, light, dark, light, dark, light. To start again in each group, shade one group at a time. The first keeps its full color. <em>Lighter</em> and <em>Full color</em> set single bubbles by hand. These shades stay with the bubbles and win over the layer's pattern; if you split one later, select the stretch and choose again. <em>Layer: …</em> (it names the layer's own setting, as in <em>Layer: Every 4</em>) hands them back to the layer. How light they are comes from the layer's <em>Subtle</em> or <em>Strong</em>, which you can choose whenever anything on the layer is shaded. With bubbles shaded differently selected, the box reads <em>Mixed</em>. Exports and copies keep these shades.</p>
+    <p><strong>Invert.</strong> <kbd>I</kbd> (or <em>Invert</em> at the bottom of the Shade box) swaps full and lighter on the selected bubbles, so a pattern can start on a light bubble instead. It works on shades from the layer's pattern too. An inverted pattern reads that way in the box, for example <em>Every other (inverted)</em>.</p>
+    <h3>Sync lines</h3>
+    <p>View → <em>Sync lines</em> (<kbd>Y</kbd>) draws a dashed line down through the layers wherever all of them change at the same moment: those are the joints where the song's elements line up, and the stretches between them show where they drift apart. A change on any level that's showing counts, and changes within 50 milliseconds of each other count as one moment. The very start and end of the song don't get lines, and it takes at least two layers.</p>
+    <p>Each layer has a <strong>Count for sync lines</strong> tick box in the Layers panel; untick a layer to leave it out. A Bars &amp; beats layer starts unticked, since it changes on every beat, and a hidden layer never counts. The app remembers whether sync lines are on.</p>
+    <h3>A tighter look</h3>
+    <p>View → <em>Minimal view</em> (<kbd>V</kbd>) packs the layers a hairline apart and gives room only to what shows: hidden levels close up (whatever <em>Hidden levels keep their space</em> says; the box is grayed out while minimal view is on), and the strip for timestamps goes when a layer shows none. It applies to every project and the app remembers it; press <kbd>V</kbd> again for the usual spacing.</p>
+    <p><strong>Gap between bubbles</strong>, next to the bubble shape in the Layers panel, puts up to 6 pixels of daylight between neighboring bubbles on a layer, so each boundary stands out, especially on a square layer full of small bubbles. Only the drawing changes; the bubbles' times stay exactly as they are.</p>
+    <p>All of it carries into exports: the palette's colors, the shades, the gaps and the minimal spacing, and the sync lines too when <em>Include sync lines</em> is ticked (§16).</p>
+  </section>
+
+  <section id="waveform">
+    <h2 class="sec"><span class="idx">12.</span>The waveform</h2>
+    <p><kbd>W</kbd> shows or hides a waveform of the track you are hearing; <kbd>Shift</kbd>+<kbd>W</kbd> moves it above or below the layers. Because it follows the <strong>Hearing:</strong> track, pressing <kbd>T</kbd> lets you see where the vocal enters against the instrumental's shape. Clicking the waveform moves the playhead, same as clicking the timeline.</p>
+  </section>
+
+  <section id="snap">
+    <h2 class="sec"><span class="idx">13.</span>Snapping</h2>
+    <p>With snapping on (<kbd>S</kbd> toggles it), a dragged edge jumps onto nearby landmarks and shows a green guide line when it locks:</p>
+    <ul>
+      <li><strong>Other bubbles' edges</strong>, on any visible layer — line a Production boundary up with a Songwriting one by dragging toward it.</li>
+      <li><strong>The track's transients</strong> — drum hits and note attacks — once you are zoomed in enough for them to be meaningful.</li>
+      <li><strong>Beats and downbeats</strong>, when a beat grid is set.</li>
+    </ul>
+    <p>For fine work, zoom in first: <kbd>+</kbd> and <kbd>-</kbd>, or the other ways in §3.</p>
+  </section>
+
+  <section id="excerpts">
+    <h2 class="sec"><span class="idx">14.</span>Excerpts</h2>
+    <p>Select some bubbles and press <kbd>X</kbd> to zoom the whole app — timeline, ruler, song overview and playback — down to just that span. Nothing is removed; <kbd>Shift</kbd>+<kbd>X</kbd> brings the whole song back. An excerpt view is saved with the project, so a file can reopen focused on the part you were working on.</p>
+    <p>To hand someone just an excerpt — a single section for a student, say — use Edit → <em>Save excerpt as its own project</em>. That writes a separate file containing only those bubbles over the same audio, and leaves what is on your screen untouched.</p>
+  </section>
+
+  <section id="import">
+    <h2 class="sec"><span class="idx">15.</span>Importing timelines</h2>
+    <p>File → Import Variations / Audio Timeliner file (<kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd>) brings in a <code>.v2t</code> file from Variations or a <code>.tim</code> file from Audio Timeliner — either as a new project or as a new layer inside the current one. In a new project, the layer takes the song's name; a layer added to the current project is called Variations. You can also drag the file onto the window. It carries across every bubble and its nesting, the colors, the labels, any annotations (which become notes), and the round/square and timestamp settings. Boundaries land on the exact times stored in the file. If the timeline was an excerpt of a longer song, it opens as an excerpt view over the full length. An imported layer starts with your default level fonts (§6), so its sections can arrive big and bold.</p>
+    <p>The app then looks for the song: where the file says it is, next to the timeline file, and in your default audio folder. If it finds it, the audio opens too; otherwise the bubbles come in without sound and you add the song yourself.</p>
+  </section>
+
+  <section id="export">
+    <h2 class="sec"><span class="idx">16.</span>Exporting for Canva</h2>
+    <p>File → Export (<kbd>Ctrl/Cmd</kbd>+<kbd>E</kbd>) writes the timeline as a <strong>PDF</strong> or <strong>SVG</strong>. Only what is visible goes out, so the Layers panel doubles as your export filter. The dialog lets you set the width and choose whether to include the ruler, layer names, the waveform, and the Top40 Theory logo and credit line. Build and fade fills come out just as they look on screen, and each layer keeps the height you gave it.</p>
+    <p>For Canva, choose <strong>PDF</strong> — Canva reads it as editable text and movable shapes, where SVG arrives as a flat picture, and every label arrives as whole words you can retype. Keep <em>Solid colors</em> ticked (Canva handles solid fills far better than transparency); a bubble or level you've made lighter than its layer then comes out as a paler solid color, so it still stands back as it does on screen. Untick it for real transparency. And to drop a timeline into an existing design, add the PDF as a new page from the Uploads → Designs tab, then group, cut and paste it onto the page you want. A build or fade arrives as separate pieces (the pale bubble, the color block, the outline) that you can recolor one by one.</p>
+    <p><strong>Sync lines and notes.</strong> <em>Include sync lines</em> (§11) starts ticked when they're showing on screen. Notes (§10) come out as shapes rather than text, so Canva shows the notation exactly without needing the music font, and a layer's timestamps move below its notes strip. Notation needs room, so the width starts out wide enough for it, and a line under the width says whether the notes will come out as notation or as bars at the width you choose. The width can be anything from 400 to 20,000 pixels; for a long song, export an excerpt to keep the notation.</p>
+    <p><strong>Excerpts.</strong> An excerpt (§14) exports just its stretch. A bubble that runs past the excerpt's edge is cut there, with its outline stopping at the edge, as if the bubble carried on past the page.</p>
+    <div class="note"><strong>Transparent background.</strong> Exports default to a transparent background so a timeline pasted into a design sits cleanly over whatever is behind it.</div>
+  </section>
+
+  <section id="projects">
+    <h2 class="sec"><span class="idx">17.</span>Projects &amp; saving</h2>
+    <p><kbd>Ctrl/Cmd</kbd>+<kbd>N</kbd> starts a new project, <kbd>Ctrl/Cmd</kbd>+<kbd>O</kbd> opens one, <kbd>Ctrl/Cmd</kbd>+<kbd>S</kbd> saves, and <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> saves under a new name. File → <em>Open recent</em> lists the projects you've had open lately, and dragging a project file onto the window opens it too. Projects are <code>.t40t</code> files. The <strong>*</strong> in the title bar means unsaved changes, and the app always asks before discarding them.</p>
+    <p>File dialogs remember where you were: once a project is saved, adding audio or saving again starts in that project's own folder — so a feedback session where you open a student's song and save the timeline beside it stays in one place. File → <em>Set default audio folder</em> sets a home for when nothing recent applies.</p>
+    <p>A project that hasn't been saved yet suggests saving next to the file it started from: the <code>.v2t</code> or <code>.tim</code> it was imported from, or its song. File → <em>Save new projects in</em> changes that to the last folder you saved a project in, or to one folder you always use.</p>
+    <div class="note"><strong>Sharing with older versions.</strong> A project saved in 2.3 opens in 2.2 just as it is, except its melodic contour: 2.2 breaks the line at rests rather than between phrases, and doesn't know the breaks and joins set with <kbd>\</kbd> (backslash), so saving the project in 2.2 loses them. A project saved in 2.2 opens in 2.1 just as it is. A project saved in 2.1 opens in 2.0, but there a layer hiding its notes shows them as bars, and shades set in the Bubble panel don't show; saving it in 2.0 loses those shades. A project saved in version 2.0 or later still opens in 1.4, with all its bubbles, but 1.4 doesn't know about notes, locked layers, pacing shades, gaps or sync lines: they don't show there, and saving the project in 1.4 loses them. Anyone you share projects with should update first (§1).</div>
+    <h3>Project notes</h3>
+    <p>For notes about the whole song (key, tempo, form, what stands out, ideas to try), click <strong>Project notes</strong> in the top bar, or use Edit → <em>Project Notes</em>. They are saved with the project, and a dot on the button (<strong>Project notes ●</strong>) shows when a project has some; hover over the button to read how they begin. Like any change, an edit to them can be undone. Notes on a single bubble go in the Bubble panel instead (§5).</p>
+    <div class="note"><strong>If something goes wrong.</strong> The app keeps a <code>crash-log.txt</code> that records what happened; send it along when you report a problem. Help → <em>Show Crash Log</em> opens its folder with the file already selected, ready to attach to an email. If the app won't open at all, go straight to that folder, called <em>Bubble Timeliner</em> (it is hidden from normal browsing):<br><strong>Windows:</strong> click in File Explorer's address bar, paste <code>%APPDATA%\Bubble Timeliner</code> and press Enter.<br><strong>Mac:</strong> in the Finder, choose Go → Go to Folder (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>G</kbd>), paste <code>~/Library/Application Support/Bubble Timeliner</code> and press Return.</div>
+  </section>
+
+  <section id="shortcuts">
+    <h2 class="sec"><span class="idx">18.</span>Custom shortcuts</h2>
+    <p>Every command's key can be changed. Edit → Keyboard shortcuts (<kbd>Ctrl/Cmd</kbd>+<kbd>K</kbd>) opens a list; click a box, press the keys you want, and OK. It refuses to save the same key on two commands and tells you which clash, and a reset button restores the defaults. Your choices are saved for you, load every time you open the app, and show up in the Shortcuts panel. Only the keys you change are saved; the rest follow the defaults, so a key that a new version adds still reaches you.</p>
+    <p>A few keys always work, whatever you set: <kbd>1</kbd>–<kbd>9</kbd> pick a layer, <kbd>Alt/Option</kbd>+<kbd>1</kbd>–<kbd>9</kbd> apply a label, <kbd>Ctrl/Cmd</kbd>+<kbd>Backspace</kbd> deletes, <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd> redoes, <kbd>Ctrl/Cmd</kbd>+<kbd>R</kbd> renames, and <kbd>=</kbd> zooms in.</p>
+  </section>
+
+  <section id="reference">
+    <h2 class="sec"><span class="idx">19.</span>Keyboard reference</h2>
+    <p class="lede">Every default shortcut. All of them are remappable (§18). On a Mac, Ctrl/Cmd means Cmd and Alt/Option means Option.</p>
+    <table class="keys">
+      <caption>Playback &amp; navigation</caption>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Space</kbd></td><td>Play / stop — from the selected bubble, else back to where you last started</td></tr>
+        <tr><td><kbd>Shift</kbd>+<kbd>Space</kbd></td><td>Play / pause from the playhead</td></tr>
+        <tr><td><kbd>→</kbd> / <kbd>←</kbd></td><td>Next / previous bubble</td></tr>
+        <tr><td><kbd>Enter</kbd></td><td>Jump playhead to the selected bubble</td></tr>
+        <tr><td><kbd>T</kbd></td><td>Switch the track you're hearing</td></tr>
+        <tr><td><kbd>1–9</kbd></td><td>Make that layer the active one</td></tr>
+        <tr><td><kbd>+</kbd> / <kbd>-</kbd></td><td>Zoom in / out, around the playhead</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>0</kbd></td><td>Fit song (or excerpt) to the window</td></tr>
+      </tbody>
+    </table>
+
+    <table class="keys">
+      <caption>Bubbles</caption>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>B</kbd></td><td>Split the bubble at the playhead</td></tr>
+        <tr><td><kbd>F2</kbd> / <kbd>Ctrl/Cmd</kbd>+<kbd>R</kbd></td><td>Rename the selected bubble</td></tr>
+        <tr><td><kbd>C</kbd> / <kbd>Shift</kbd>+<kbd>C</kbd></td><td>Next palette color / pick a color</td></tr>
+        <tr><td><kbd>Alt/Option</kbd>+click</td><td>The selected bubbles take the clicked bubble's color</td></tr>
+        <tr><td><kbd>A</kbd></td><td>Paste copied colors onto the selected bubbles</td></tr>
+        <tr><td><kbd>O</kbd> / <kbd>D</kbd></td><td>Color palettes / carry the selected sections' colors down</td></tr>
+        <tr><td><kbd>F</kbd> / <kbd>Shift</kbd>+<kbd>F</kbd></td><td>Next fill (solid / build / fade) / next fill style</td></tr>
+        <tr><td><kbd>I</kbd></td><td>Invert the shading of the selected bubbles</td></tr>
+        <tr><td><kbd>R</kbd></td><td>Type lyrics, one line per bubble, from the selected bubble</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>↑</kbd> / <kbd>Ctrl/Cmd</kbd>+<kbd>↓</kbd></td><td>Move up / down a level</td></tr>
+        <tr><td><kbd>U</kbd> / <kbd>Shift</kbd>+<kbd>U</kbd></td><td>Quantize the selected bubbles to the grid / change the step (beats, 8ths, 16ths, bars)</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>U</kbd></td><td>Quantize this level only</td></tr>
+        <tr><td><kbd>G</kbd> / <kbd>Shift</kbd>+<kbd>G</kbd></td><td>Group / ungroup selected bubbles</td></tr>
+        <tr><td><kbd>H</kbd> / <kbd>Shift</kbd>+<kbd>H</kbd></td><td>Hide selected / show all hidden</td></tr>
+        <tr><td><kbd>Backspace</kbd></td><td>Merge into the bubble before</td></tr>
+        <tr><td><kbd>Delete</kbd> / <kbd>Ctrl/Cmd</kbd>+<kbd>Backspace</kbd></td><td>Delete the selected bubbles</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>C</kbd> / <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd></td><td>Copy the selected bubbles / everything under the selected bubble</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>V</kbd> / <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd></td><td>Paste fitted into the selected bubble / at the playhead</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>D</kbd></td><td>Duplicate the selection right after itself</td></tr>
+        <tr><td><kbd>]</kbd> / <kbd>[</kbd></td><td>Bring to front / send to back, where bubbles on a row overlap</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+click</td><td>Add to the selection</td></tr>
+        <tr><td><kbd>Shift</kbd>+click</td><td>Select a range, along a row or across two levels</td></tr>
+        <tr><td>Drag on empty space</td><td>Draw a selection box (every level it covers)</td></tr>
+        <tr><td>Drag a selected bubble</td><td>Move the whole selection</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+drag (Mac: <kbd>Option</kbd>+drag)</td><td>Duplicate the selection, from a bubble's middle</td></tr>
+        <tr><td>Drag an edge</td><td>Move that edge on every level of the layer</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+drag edge</td><td>Move the edge on this level only</td></tr>
+        <tr><td><kbd>Alt/Option</kbd>+drag edge</td><td>Move this bubble's edge alone, opening a gap</td></tr>
+      </tbody>
+    </table>
+
+    <table class="keys">
+      <caption>Layers &amp; notes</caption>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>L</kbd></td><td>Lock / unlock the active layer</td></tr>
+        <tr><td><kbd>N</kbd></td><td>Edit notes on or off (clicks add notes and select them)</td></tr>
+        <tr><td><kbd>Shift</kbd>+<kbd>N</kbd></td><td>Note step: 16ths / 8ths / quarters</td></tr>
+        <tr><td><kbd>K</kbd> (hold)</td><td>Tap a note while the song plays, with note editing on</td></tr>
+        <tr><td><kbd>P</kbd></td><td>Type pitches (scale degrees) for the selected bubbles, or from the playhead</td></tr>
+        <tr><td><kbd>Shift</kbd>+<kbd>↑</kbd> / <kbd>Shift</kbd>+<kbd>↓</kbd></td><td>In the pitch box: an octave higher / lower</td></tr>
+      </tbody>
+    </table>
+
+    <table class="keys">
+      <caption>Selected notes (note editing on)</caption>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>Click / <kbd>Ctrl/Cmd</kbd>+click</td><td>Select a note / add one or take it away</td></tr>
+        <tr><td><kbd>Shift</kbd>+click</td><td>Select the run from the last note clicked</td></tr>
+        <tr><td><kbd>Shift</kbd>+drag</td><td>Select the notes in a box (start anywhere on the layer)</td></tr>
+        <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>A step earlier / later</td></tr>
+        <tr><td><kbd>Shift</kbd>+<kbd>←</kbd> / <kbd>Shift</kbd>+<kbd>→</kbd></td><td>A step shorter / longer</td></tr>
+        <tr><td><kbd>↑</kbd> / <kbd>↓</kbd></td><td>A scale step higher / lower (with Shift: an octave)</td></tr>
+        <tr><td><kbd>\</kbd> (backslash)</td><td>Break or join the contour just before each one</td></tr>
+        <tr><td><kbd>U</kbd></td><td>Quantize to the note step</td></tr>
+        <tr><td><kbd>P</kbd></td><td>Type pitches for just these notes</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>C</kbd> / <kbd>Ctrl/Cmd</kbd>+<kbd>V</kbd></td><td>Copy / paste at the playhead</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>D</kbd></td><td>Duplicate a bar (or a few) later</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+drag (Mac: <kbd>Option</kbd>+drag)</td><td>Copy them as you drag</td></tr>
+        <tr><td><kbd>Delete</kbd> / <kbd>Backspace</kbd></td><td>Remove them</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>Let go of them</td></tr>
+      </tbody>
+    </table>
+
+    <table class="keys">
+      <caption>Text styling &amp; labels</caption>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>B</kbd> / <kbd>Ctrl/Cmd</kbd>+<kbd>I</kbd></td><td>Bold / italic</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>=</kbd> / <kbd>Ctrl/Cmd</kbd>+<kbd>-</kbd></td><td>Bigger / smaller text</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd></td><td>Let text slide past the bubble's edges</td></tr>
+        <tr><td><kbd>Alt/Option</kbd>+<kbd>1–9</kbd></td><td>Apply a label from the current tab</td></tr>
+      </tbody>
+    </table>
+
+    <table class="keys">
+      <caption>View</caption>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Q</kbd></td><td>Square / round bubbles on the active layer</td></tr>
+        <tr><td><kbd>W</kbd> / <kbd>Shift</kbd>+<kbd>W</kbd></td><td>Show waveform / move it above or below</td></tr>
+        <tr><td><kbd>M</kbd></td><td>Show or hide the beat grid</td></tr>
+        <tr><td><kbd>V</kbd></td><td>Minimal view: the layers close together</td></tr>
+        <tr><td><kbd>Y</kbd></td><td>Sync lines, where all the layers change together</td></tr>
+        <tr><td><kbd>S</kbd></td><td>Snapping on or off</td></tr>
+        <tr><td><kbd>X</kbd> / <kbd>Shift</kbd>+<kbd>X</kbd></td><td>Excerpt view / show the whole song</td></tr>
+      </tbody>
+    </table>
+
+    <table class="keys">
+      <caption>File, edit &amp; tools</caption>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>N</kbd> / <kbd>O</kbd> / <kbd>S</kbd></td><td>New / open / save project</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></td><td>Save as</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd></td><td>Add an audio track</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>E</kbd></td><td>Export as PDF / SVG</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd></td><td>Import a <code>.v2t</code> or <code>.tim</code> timeline</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>T</kbd></td><td>Beat grid</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>Z</kbd> / <kbd>Ctrl/Cmd</kbd>+<kbd>Y</kbd></td><td>Undo / redo (Ctrl/Cmd+Shift+Z redoes too)</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>K</kbd></td><td>Keyboard shortcuts</td></tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+
+<footer>
+  Top40 Theory Timeliner · User Manual · Version 2.3 · <a href="https://top40theory.com">top40theory.com</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Top40 Theory Timeliner — What's New</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#22242A; --ink-soft:#565A66; --ink-faint:#8A8F9C;
+    --paper:#FBFBFC; --panel:#F2F3F6; --line:#E2E4EA;
+    --navy:#2B2B2E; --navy-deep:#232326;
+    --teal:#22C8AC; --blue:#2FA8FF;
+    --wrap:74ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:Inter,-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  header.hero{
+    background:var(--navy-deep); color:#EAF0F8; padding:64px 28px 52px;
+    border-bottom:3px solid transparent;
+    border-image:linear-gradient(90deg,var(--teal),var(--blue)) 1;
+  }
+  .hero-inner{max-width:var(--wrap); margin:0 auto;}
+  .mark{
+    display:inline-block; font-family:"Space Grotesk",sans-serif; font-weight:700;
+    letter-spacing:.5px; font-size:14px; padding:7px 13px; border-radius:999px;
+    color:#06121F; background:linear-gradient(120deg,var(--teal),var(--blue)); margin-bottom:26px;
+  }
+  .hero h1{
+    font-family:"Space Grotesk",sans-serif; font-weight:700;
+    font-size:clamp(2.4rem,6vw,3.6rem); line-height:1.02; margin:0 0 16px; letter-spacing:-.5px;
+  }
+  .hero p{margin:0; color:#AFBACB; font-size:1.12rem; max-width:60ch;}
+  .hero .meta{margin-top:26px; color:#7F8AA0; font-size:.92rem;}
+  .hero .weblinks{margin-top:14px; font-size:.95rem; color:#7F8AA0;}
+  .hero .weblinks a{color:#2FE0C0; text-decoration:none; font-weight:600;}
+  .hero .weblinks a:hover{text-decoration:underline;}
+
+  main{max-width:var(--wrap); margin:0 auto; padding:8px 28px 40px;}
+  .intro{font-size:1.06rem; color:var(--ink-soft); margin:40px 0 8px; max-width:68ch;}
+
+  .feat{padding:28px 0; border-top:1px solid var(--line);}
+  .feat:first-of-type{border-top:none;}
+  .feat h2{
+    font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:1.35rem;
+    margin:0 0 .35rem; letter-spacing:-.2px; display:flex; align-items:baseline; gap:.6ch;
+  }
+  .tag{
+    font-family:"Space Grotesk",sans-serif; font-size:.62rem; font-weight:700; letter-spacing:.08em;
+    padding:3px 8px; border-radius:5px; vertical-align:middle; white-space:nowrap;
+  }
+  .tag.new{color:#06121F; background:linear-gradient(120deg,var(--teal),var(--blue));}
+  .tag.ext{color:var(--blue); background:transparent; border:1px solid var(--blue);}
+  .feat p{margin:.5rem 0 0; max-width:70ch;}
+  .feat h3{font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:1.02rem; margin:1.3rem 0 .1rem; color:var(--ink);}
+  .feat h3 + ul{margin-top:.3rem;}
+  .feat .was{color:var(--ink-faint); font-size:.95rem; margin-top:.5rem;}
+  .feat .was b{color:var(--ink-soft); font-weight:600; font-family:"Space Grotesk",sans-serif;}
+
+  .carried{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:26px 30px; margin:36px 0 10px;}
+  .carried h2{font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:1.2rem; margin:0 0 .3rem;}
+  .carried p{margin:.3rem 0 1rem; color:var(--ink-soft); max-width:68ch;}
+  .carried ul{margin:0; padding-left:1.1rem; columns:2; column-gap:36px;}
+  .carried li{margin:.3rem 0; break-inside:avoid;}
+
+  .legend{display:flex; gap:22px; flex-wrap:wrap; margin:22px 0 4px; font-size:.9rem; color:var(--ink-soft);}
+  .legend span{display:inline-flex; align-items:center; gap:8px;}
+
+  footer{max-width:var(--wrap); margin:0 auto; padding:30px 28px 60px; color:var(--ink-faint);
+    font-size:.9rem; border-top:1px solid var(--line);}
+  footer a{color:var(--blue); text-decoration:none;}
+
+  @media (max-width:640px){ .carried ul{columns:1;} body{font-size:16px;} }
+  @media print{
+    .web-only{display:none !important;}
+    body{background:#fff; font-size:11.5pt;}
+    header.hero{background:#fff; color:#000; padding:0 0 18px; border-image:none; border-bottom:2px solid var(--ink);}
+    .hero .mark{background:none; color:#000; border:1px solid #000; padding:0; margin-bottom:10px;}
+    .hero p,.hero .meta{color:#333;}
+    .tag.new{background:#000; color:#fff;} .tag.ext{border-color:#000; color:#000;}
+    .feat{break-inside:avoid;} .feat:first-of-type{break-inside:auto;} .feat h3{break-after:avoid;} a{color:#000; text-decoration:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="mark">TOP40 THEORY</span>
+    <h1>What's New</h1>
+    <p>How the Timeliner extends the Variations Audio Timeliner that inspired it — rebuilt on a more flexible foundation for analyzing pop songs.</p>
+    <div class="meta">Version 2.3 · Windows &amp; macOS · top40theory.com</div>
+    <div class="weblinks web-only"><a href="../manual/">User manual</a></div>
+  </div>
+</header>
+
+<main>
+  <p class="intro">The original Variations Audio Timeliner is a wonderful tool for mapping a recording as nested bubbles over time. This app keeps that idea at its core and rebuilds around it, with a data model flexible enough for a few things the original couldn't do. Below is what changed, grouped by what it lets you do.</p>
+
+  <div class="feat" style="border-top:none;">
+    <h2>Added in 2.3 <span class="tag new">UPDATE</span></h2>
+    <p>Tapped notes fixed in place instead of entered again, colors matched in one click, and section colors that carry down through the levels.</p>
+    <h3>Fixing notes</h3>
+    <ul>
+      <li><strong>Select notes.</strong> With note editing on (<em>N</em>), click a note to select it. Ctrl+click (Cmd+click on a Mac), Shift+click and Shift+drag select more, and <em>Esc</em> lets go. The arrow keys move them a step, Shift+arrows make them a step shorter or longer, and dragging a note's end changes its length, so a tapped note that came out a 16th early, or a 16th too long, is one key away from right. <em>U</em> quantizes them to the note step and <em>Delete</em> removes them.</li>
+      <li><strong>Copy and transpose notes.</strong> Ctrl+C and Ctrl+V copy the selected notes to the playhead, each keeping its place in the beat, and Ctrl+drag (Option+drag on a Mac) copies them as you drag. <em>↑</em> and <em>↓</em> move their pitches a scale step, Shift an octave, and <em>P</em> types pitches for just those notes.</li>
+      <li><strong>Duplicate right after.</strong> Ctrl+D (Cmd+D on a Mac) puts a copy right after the selection, the way a DAW does. Bubbles start where the selection ends, notes and all; selected notes land a bar later (or as many bars as they cover), so a phrase on a pickup copies onto the next pickup.</li>
+      <li><strong>A contour shaped by phrases.</strong> The melodic contour now breaks between phrases, the bubbles on the layer's lowest level, and runs on through each one, instead of breaking at every rest. Where it should go another way, select the note just after the spot and press <em>\</em> (backslash) to break or join the line there. Projects you already have get the new contour too.</li>
+    </ul>
+    <h3>Colors</h3>
+    <ul>
+      <li><strong>Top-down section colors.</strong> The Palettes (now <em>O</em>) have a new <em>Top down</em> option: each section gets a color by its label, and the levels under it take lighter tints of it, a third lighter each level down. Each section reads as one block of color, and its phrases still stand apart. To keep the section colors you have, select the sections and press <em>D</em> (Edit → <em>Carry section colors down</em>) to tint just the levels under them.</li>
+      <li><strong>Match colors in one click.</strong> Select bubbles and Alt+click (Option+click on a Mac) any bubble to give them its color. To copy a whole row's colors, say a verse's lyric lines onto its rhythm below, select the run underneath and Alt+click a bubble in that row: each selected bubble takes the color of the one it sits under.</li>
+      <li><strong>Paste copied colors.</strong> Copy Chorus 1's phrases, select Chorus 2's and press <em>A</em>: they take the same pattern of colors, and nothing else changes.</li>
+    </ul>
+    <h3>Editing and getting around</h3>
+    <ul>
+      <li><strong>Paste keeps the section.</strong> Pasting a phrase into a section now replaces only the phrases there, and the section stays standing. A copied section that brings its phrases still replaces the section it lands on.</li>
+      <li><strong>Quantize one level.</strong> Ctrl+U (Cmd+U on a Mac) quantizes only the selected level, so a section can go onto its downbeat while its first phrase still starts on the pickup. <em>U</em> works as before.</li>
+      <li><strong>Click a locked layer to jump.</strong> A click on a locked layer's bubble moves the playhead to its start, so a locked Bars &amp; beats layer is handy for getting around. It still can't be changed.</li>
+      <li><strong>Layers named after the song.</strong> A new project's first layer takes the song's name instead of Layer 1, and so does a Variations file opened as a new project.</li>
+      <li><strong>Mac delete keys, named plainly.</strong> On a Mac, the Shortcuts panel now says <em>delete</em> merges bubbles and <em>⌘ delete</em> removes them, the way the keys are labeled on a Mac keyboard.</li>
+      <li><strong>New keys reach you.</strong> If you've changed your shortcuts (Ctrl+K), only the keys you changed are kept, so the new keys in this update show up for you too.</li>
+    </ul>
+    <p><strong>Sharing projects.</strong> A 2.3 project opens in 2.2 just as it is, except the contour: 2.2 breaks the line at rests, and saving the project there loses the breaks and joins set with <em>&#92;</em> (backslash).</p>
+  </div>
+
+  <div class="feat">
+    <h2>Added in 2.2 <span class="tag new">UPDATE</span></h2>
+    <p>Lyrics in one paste, pitches a section at a time, and drags that keep a diagram tidy.</p>
+    <ul>
+      <li><strong>Paste a whole lyric.</strong> Select the bubble a lyric starts on and press <em>R</em>, then paste the lyric: each line goes to the next bubble along the row, showing on the timeline as you type. <em>Enter</em> splits a line over two bubbles, blank lines and headings like [Chorus] are skipped, and a line with just <em>.</em> leaves a bubble's label as it is. Select several bubbles to fill just those.</li>
+      <li><strong>Type pitches for one section.</strong> With bubbles selected, <em>P</em> covers just the notes inside them, so going back to Verse 1 shows only Verse 1. With nothing selected, it still runs from the playhead on.</li>
+      <li><strong>Drops replace what's underneath.</strong> A bubble dragged onto another, or a Ctrl+drag copy (Option+drag on a Mac) dropped onto one, now replaces it instead of hiding on top of it. Partial overlaps stay, and the status bar says what was replaced.</li>
+      <li><strong>Bubbles join their new group.</strong> A bubble moved or copied into another section joins that section's group, so pacing shades count it with its new neighbors.</li>
+      <li><strong>Ctrl+drag brings notes along.</strong> Duplicating a chorus by dragging now brings its notes too, the way copy and paste does. Edit → <em>Paste notes too</em> switches it off.</li>
+      <li><strong>Shade counts across the selection.</strong> <em>Every other</em>, <em>Every 3</em> and the rest now count straight through the selected bubbles, whatever the groups, so a verse split into two groups comes out dark, light, dark, light. To start again in each group, shade one group at a time.</li>
+      <li><strong>Invert shading.</strong> <em>I</em> (or Shade → <em>Invert</em>) swaps full and lighter on the selected bubbles.</li>
+      <li><strong>Tidy up a project.</strong> Projects from before 2.2 can hide copies stacked exactly on matching bubbles, and bubbles left out of the group they sit in. When a project like that opens, the app offers to tidy it up. It's in the Edit menu too, and undo puts it all back.</li>
+    </ul>
+    <p><strong>Sharing projects.</strong> Nothing new is stored in a project, so a 2.2 project opens in 2.1 just as it is.</p>
+  </div>
+
+  <div class="feat">
+    <h2>Added in 2.1 <span class="tag new">UPDATE</span></h2>
+    <p>Tapping that lands where you mean it, and finer control over how melody and pacing show.</p>
+    <ul>
+      <li><strong>Tap timing.</strong> Everyone presses a key a little after the beat they hear, or a little before it. Edit → <em>Tap timing</em> measures yours: click <em>Calibrate</em>, tap <em>K</em> on eight beats, and every K tap from then on takes that amount off. After each tapping pass, the app also checks whether your notes leaned early or late, slides the pass onto the grid, and keeps K up to date. <em>B</em> gets an amount of its own for cuts made while the song plays. Each computer remembers its own.</li>
+      <li><strong>The playhead shows what you hear.</strong> Windows now plays the song with much less delay. And while the song plays, the playhead is held back by the time the sound takes to reach you, so it crosses each hit as you hear it, and it stops where you heard the music stop. Fine-tune it in Edit → <em>Tap timing</em>.</li>
+      <li><strong>On time on long songs.</strong> A tap now counts from the moment you pressed the key, even if the app was busy just then. While you tap, new notes show as bars, and the notation catches up when the song stops. Playback runs lighter on long songs too.</li>
+      <li><strong>Notes come with copy and paste.</strong> Copy a chorus and its notes come along. They keep their rhythm and move by whole beats to where you paste, replacing the notes already there. In another project they go into the track of the same name. Edit → <em>Paste notes too</em> switches this off.</li>
+      <li><strong>Contour without the rhythm.</strong> A third button beside ♩ and ▬ hides a layer's notes while its contour and range bands still show. Show the rhythm on one layer and the pitch on another, and color each for its own story.</li>
+      <li><strong>Shades on the bubbles you choose.</strong> The Bubble panel's new <em>Shade</em> box shades just the selected bubbles: every other one, or every 3, 4 and so on, counted across them, or lighter and full color one at a time.</li>
+      <li><strong>Quarter notes.</strong> <em>Shift+N</em> now steps through 16ths, 8ths and quarters.</li>
+    </ul>
+    <p><strong>Sharing projects.</strong> A 2.1 project opens in 2.0, but there a layer hiding its notes shows them as bars, and shades set in the Bubble panel don't show. Saving it in 2.0 loses those shades.</p>
+  </div>
+
+  <div class="feat">
+    <h2>Added in 2.0 <span class="tag new">UPDATE</span></h2>
+    <p>The biggest update yet: the Timeliner now maps melody as well as form. Put a melody's rhythm and pitches on the beat grid, see its contour and range over the bubbles, and lay out pacing graphs that show how often each part of a song changes.</p>
+    <h3>Notes and melody</h3>
+    <ul>
+      <li><strong>Note tracks.</strong> Several named tracks in a project (Lead, Backing…), each shown in a strip under whichever layers you choose. Notes sit on the beat grid, so they stay on their beats if you correct the tempo later.</li>
+      <li><strong>Click or tap notes in.</strong> Press <em>N</em>, then click to add a note or drag for a longer one; <em>Shift+N</em> switches between 16ths and 8ths. Or play the song and tap <em>K</em> in time, holding each note for as long as it lasts.</li>
+      <li><strong>Rhythm notation.</strong> Notes are written the way a pop lead sheet writes them, with ties, rests and beams where a reader expects them, and each note at its real moment, so it lines up with the bubbles. Or show them as plain bars.</li>
+      <li><strong>Pitches as scale degrees.</strong> Press <em>P</em> and type <em>3 5 6 6 5 3</em>: each number lands on the nearest pitch, with <em>'</em> and <em>,</em> for octaves. There's no key to set.</li>
+      <li><strong>Melodic contour.</strong> A stair-step line of the melody over the layer's bubbles, with the degree numbers on its steps.</li>
+      <li><strong>Range bands.</strong> Each phrase or section can show its span from lowest note to highest, labeled with the interval: 5th, octave, 10th.</li>
+    </ul>
+    <h3>Pacing graphs</h3>
+    <ul>
+      <li><strong>Pacing palette.</strong> A new kind of palette, One per layer: each layer its own color, top to bottom.</li>
+      <li><strong>Pacing shades.</strong> Lighten every other bubble, or all but the first of every 3, 4, 5, 6 or 8, so how often a layer changes reads at a glance.</li>
+      <li><strong>Sync lines.</strong> <em>Y</em> draws a dashed line wherever all the layers change at once.</li>
+      <li><strong>Minimal view.</strong> <em>V</em> packs the layers a hairline apart, with room only for what shows.</li>
+      <li><strong>Gap between bubbles.</strong> A little space between neighbors, set per layer, so each boundary stands out.</li>
+    </ul>
+    <h3>Faster editing</h3>
+    <ul>
+      <li><strong>Quantize.</strong> Press <em>U</em> to line the selected bubbles up with the nearest beat, or with 8ths, 16ths or bars (<em>Shift+U</em>). Select a section's bubble and everything grouped inside it comes along.</li>
+      <li><strong>Fine-tune the beat grid.</strong> The grid moves on the timeline as you adjust it, the downbeat steps 5 ms at a time, and <em>Line up with the audio</em> puts it right on the beats at the tempo you typed. A Bars &amp; beats layer moves with it.</li>
+      <li><strong>Move a whole selection.</strong> Drag any selected bubble and everything selected moves with it, across layers and levels.</li>
+      <li><strong>Duplicate by dragging.</strong> Ctrl+drag (Option+drag on a Mac) from the middle of a bubble copies the selection.</li>
+      <li><strong>Edges move every level.</strong> Dragging an edge now moves it on every level of the layer, so a section and the phrases inside it stay lined up. Ctrl/Cmd+drag moves one level; Alt/Option+drag moves just that bubble's edge.</li>
+      <li><strong>Selection boxes take every level.</strong> Box a whole section to take it with everything inside it.</li>
+      <li><strong>Lock layers.</strong> A padlock on each layer (or <em>L</em>) protects it from selecting, dragging, recoloring and pasting. New Bars &amp; beats layers start locked.</li>
+      <li><strong>Front and back.</strong> <em>]</em> and <em>[</em> put overlapping bubbles in front of or behind each other, and labels always stay in front.</li>
+      <li><strong>Palettes that keep your color coding.</strong> Matching by current color, a straight swap, is now the default, and you choose which layers and levels to recolor.</li>
+    </ul>
+    <h3>Panels, exports and fixes</h3>
+    <ul>
+      <li><strong>Your panel arrangement is remembered.</strong> Popped-out panels, panels you've docked elsewhere and the Shortcuts panel stay as you left them, with Bottom and Sides each keeping their own; View → Panels → Reset Arrangement starts over.</li>
+      <li><strong>A roomier Layers list.</strong> Room for at least four layers, growing to show up to ten.</li>
+      <li><strong>Exports with notes.</strong> Notation comes out as shapes, so Canva shows it exactly; the export width starts wide enough for it and says whether it fits. Sync lines can come along too.</li>
+      <li><strong>Cleaner excerpt exports.</strong> Excerpts no longer come out narrower than they should, and a bubble crossing an excerpt's edge is cut neatly there.</li>
+    </ul>
+    <p><strong>Sharing projects.</strong> A 2.0 project still opens in 1.4, but its notes, locks, pacing shades, gaps and sync settings don't show there, and saving it in 1.4 loses them. Ask anyone you share projects with to update.</p>
+  </div>
+
+  <div class="feat">
+    <h2>Added in 1.4 <span class="tag new">UPDATE</span></h2>
+    <p>A round of features for richer breakdowns — lyrics, chords, techniques and production on layers of their own:</p>
+    <ul>
+      <li><strong>Copy and paste whole sections.</strong> Select Chorus 1 and press Ctrl/Cmd+Shift+C to copy everything under it on the other layers; select Chorus 2 and press Ctrl/Cmd+V to paste it fitted to Chorus 2's length. Ctrl/Cmd+C copies just the selected bubbles, Ctrl/Cmd+Shift+V pastes at the playhead, and copies paste into other projects too.</li>
+      <li><strong>Color palettes.</strong> Recolor a layer, or every layer, in one go: six palettes for sections (including Top40 Theory and a color-blind-safe one) and ten that run low to high, for vocal range, energy or tension. Match by label, by current color or by level, or use a palette only for new bubbles. Make your own, or capture one from a layer's colors.</li>
+      <li><strong>Labels keep matching.</strong> A label clicked in the Labels panel takes the color its namesakes already have on that layer, so a recolored layer stays consistent.</li>
+      <li><strong>Opacity per level and per bubble.</strong> Fade one level of a layer, or a single bubble, to make others stand out. Exports keep the difference, even with Solid colors on.</li>
+      <li><strong>Subheadings.</strong> An optional second, smaller line under a bubble's label.</li>
+      <li><strong>Level fonts.</strong> Give a whole level one font in a click — big and bold for sections — and save it as your default, so every new layer and imported file starts that way.</li>
+      <li><strong>Hide labels per level.</strong> Keep the bubbles but hide the text on busy levels, like lyrics, until you zoom in.</li>
+      <li><strong>Hidden levels keep their space.</strong> Hiding a lower level no longer drops the levels above it (a per-layer setting).</li>
+      <li><strong>Save next to the .v2t.</strong> An imported timeline suggests saving beside the file it came from; File → Save new projects in offers other choices.</li>
+      <li><strong>Fixes and touches.</strong> A layer picked in the Layers panel stays active while you change its settings, big two-line labels never poke out above their bubble, and menu items that can't be used right now are grayed out.</li>
+    </ul>
+  </div>
+
+  <div class="feat">
+    <h2>Added in 1.3 <span class="tag new">UPDATE</span></h2>
+    <p>A round of changes for the first public release, many of them to make the app at home on a laptop, tested on 13-inch MacBooks:</p>
+    <ul>
+      <li><strong>Made for laptop screens.</strong> Compact panels (View menu; on by themselves on laptop-sized screens) narrow the Layers panel, turn its buttons into symbols and tuck each layer's settings into a pop-up. Everything fits a 13-inch MacBook.</li>
+      <li><strong>Panels along the bottom by default.</strong> The panels now start under the timeline, keeping the top of the screen clear; View → Panels → Sides brings back the classic layout.</li>
+      <li><strong>Fold, pop out and reshape panels.</strong> Click any title bar to fold a panel away. Pop Layers, Bubble or Labels out as a window of their own. Drag the panels taller along the bottom and each one switches to its tall shape; the height you choose is remembered.</li>
+      <li><strong>Song overview.</strong> A waveform of the whole song replaces the position slider: click to jump, drag the box to scroll, drag its edges to zoom, double-click for the whole song.</li>
+      <li><strong>Zoom with + and −.</strong> Around the playhead, so it stays put.</li>
+      <li><strong>Resize and reorder layers.</strong> Drag a layer's edge in the names column to make it taller or shorter (saved with the project, and exported that way), and drag layers into a new order by their handles.</li>
+      <li><strong>Project notes.</strong> Notes about the whole song, from a button in the top bar.</li>
+      <li><strong>A tidier Bubble panel.</strong> Compact fields, a color swatch, B and I buttons, and the spare room goes to Notes.</li>
+      <li><strong>Clearer layer settings.</strong> A Round / Square switch, and a Timestamps tick box with its level right underneath.</li>
+      <li><strong>Cleaner label buttons.</strong> Just the names (hover to see a label's Alt/Option key), long ones shortened to fit, and the set commands in an <em>Edit sets</em> menu.</li>
+      <li><strong>Smarter B.</strong> It splits the lowest bubble you can see under the playhead, and clicking a bubble makes its layer the active one.</li>
+      <li><strong>Rename with Ctrl/Cmd+R.</strong> Alongside F2, which on a Mac needs the fn key.</li>
+      <li><strong>.t40t project files.</strong> Projects save as <code>.t40t</code> files, with their own icon on Windows and Mac, and open with a double-click.</li>
+      <li><strong>Check for Updates.</strong> Help → Check for Updates, plus a quiet daily check that shows a button when a new version is out.</li>
+      <li><strong>Show Crash Log.</strong> Help → Show Crash Log finds the log file for you, ready to send with a problem report.</li>
+      <li><strong>Small touches.</strong> A Play / Stop button (a green triangle, then a dark square), a <em>Drag and drop audio here</em> sign on a blank project, and on a Mac a new app icon, the version number in Get Info, and a window that opens filling the screen.</li>
+    </ul>
+  </div>
+
+  <div class="feat">
+    <h2>Added in 1.2 <span class="tag new">UPDATE</span></h2>
+    <p>A round of changes shaped by teaching with the app and by testers on Windows and Mac:</p>
+    <ul>
+      <li><strong>Panels along the bottom.</strong> View → Panels → Bottom lines the panels up under the timeline, which sits right on top of them, keeping the top of the screen clear for a face cam.</li>
+      <li><strong>Shortcuts panel.</strong> A foldable cheat sheet of the most-used keys, showing your own keys if you change them.</li>
+      <li><strong>Merge bubbles.</strong> <em>Backspace</em> merges a bubble into the one before it; <em>Delete</em> removes.</li>
+      <li><strong>Duplicate a layer.</strong> Copy a layer with all its bubbles and rework the copy.</li>
+      <li><strong>Selection box &amp; wider Shift+click.</strong> Drag across empty space to select a group of bubbles; Shift+click now reaches across two levels.</li>
+      <li><strong>Draggable playhead.</strong> Grab the playhead or drag along the ruler to scrub through the song.</li>
+      <li><strong>Space returns to your start point.</strong> Hear the same passage again with one key; <em>Shift+Space</em> carries on from the playhead.</li>
+      <li><strong>Build and fade fills.</strong> Bubbles can swell or fade, in three styles, and export that way to PDF and SVG.</li>
+      <li><strong>Dark mode and playhead color.</strong> A dark timeline for dim rooms; exports stay light.</li>
+      <li><strong>Drag and drop.</strong> Drop songs, projects and timeline files onto the window to open them.</li>
+      <li><strong>Audio Timeliner files.</strong> <code>.tim</code> files import alongside Variations <code>.v2t</code> files, and the app looks for the song next to the file.</li>
+      <li><strong>Labels wait for a selection.</strong> The label buttons fade until a bubble is selected, so it's clear what they act on.</li>
+      <li><strong>Whole words in Canva.</strong> Exported PDFs arrive in Canva with every label as whole, editable words.</li>
+      <li><strong>Made for the Mac too.</strong> A signed, notarized Mac app with a drag-to-Applications installer, plus the keys Mac users expect: Cmd+Shift+Z redoes and Cmd+delete deletes.</li>
+    </ul>
+  </div>
+
+  <div class="feat">
+    <h2>Added in 1.1 <span class="tag new">UPDATE</span></h2>
+    <p>Refinements since the first release, most of them from working with real feedback sessions:</p>
+    <ul>
+      <li><strong>Per-level timestamps.</strong> Show a start-time label on whichever level you choose — e.g. one clean time per section — instead of a crowded row along the bottom.</li>
+      <li><strong>Bubbles start unlabeled.</strong> New bubbles and groups come in blank, so there are no placeholder names to clear before you type your own.</li>
+      <li><strong>Open a song directly.</strong> Right-click an audio file and open it with the Timeliner: it starts a project with the song loaded, and saves into that file's own folder by default.</li>
+      <li><strong>Play from the selected bubble.</strong> Paused with a bubble selected, <em>Space</em> plays from its start; <em>Shift+Space</em> always plays from the playhead.</li>
+      <li><strong>Fuller technique palette.</strong> The Technique set now ships with FuelCore, Fuel, Core, Phrase Syncopation, Space Filler, Flow Phrase, Assonance, Spotlighting, Melodic Preview, Lyrical Preview and Rocket &amp; Feather — and your own additions persist across every project.</li>
+      <li><strong>Fits the window.</strong> Opens maximized and the timeline grows with the window; no need to refit by hand.</li>
+      <li><strong>Windows and macOS.</strong> The app now builds and runs on both.</li>
+    </ul>
+  </div>
+
+
+  <div class="legend">
+    <span><span class="tag new">NEW</span> not in the original</span>
+    <span><span class="tag ext">EXTENDED</span> the original had it; this goes further</span>
+  </div>
+
+  <div class="feat">
+    <h2>Overlapping bubbles &amp; independent layers <span class="tag new">NEW</span></h2>
+    <p>Bubbles may overlap freely, and you can stack any number of separate, independently named layers — Songwriting on one, Production on another — each shown or hidden on its own, and each level within a layer shown or hidden separately.</p>
+    <p class="was"><b>Before:</b> a single strict hierarchy, where bubbles could sit beside or inside one another but never overlap.</p>
+  </div>
+
+  <div class="feat">
+    <h2>Two audio tracks, switched live <span class="tag new">NEW</span></h2>
+    <p>Load a vocal and an instrumental together and flip between them with a keypress mid-playback, the position never skipping — so you can hear, and see on the waveform, exactly where the vocal sits against the track.</p>
+    <p class="was"><b>Before:</b> one audio file per timeline.</p>
+  </div>
+
+  <div class="feat">
+    <h2>Text control &amp; overflow <span class="tag new">NEW</span></h2>
+    <p>Per-bubble font family, size, bold and italic, plus an option to let a long label slide past a small bubble's edges instead of being clipped — useful when the label matters more than the box.</p>
+  </div>
+
+  <div class="feat">
+    <h2>One-click label palettes <span class="tag new">NEW</span></h2>
+    <p>Tabbed sets of reusable labels, each with a color — a Structure set out of the box, and your own sets for technique terms. Apply one with a click or an Alt/Option + number key; they follow you across every project.</p>
+  </div>
+
+  <div class="feat">
+    <h2>Beat grid &amp; tempo detection <span class="tag new">NEW</span></h2>
+    <p>The app finds the tempo and downbeat from the audio, lays a beat-and-bar grid over the timeline, numbers the bars, can generate a Bars &amp; beats layer, and quantizes bubbles to the grid — with everything adjustable when you know better than the detector.</p>
+  </div>
+
+  <div class="feat">
+    <h2>Notes, rhythm &amp; melody <span class="tag new">NEW</span></h2>
+    <p>Put a melody's rhythm on the beat grid, clicked in or tapped in time (calibrated to the way you tap), and see it written as pop lead-sheet notation right under the bubbles. Type its scale degrees to draw its contour, and each section's range, over the timeline.</p>
+  </div>
+
+  <div class="feat">
+    <h2>Pacing graphs <span class="tag new">NEW</span></h2>
+    <p>A palette with a color for each layer, shades that mark every 2nd, 4th or 8th change across a layer or just the bubbles you choose, sync lines where all the layers change together, and a minimal view that stacks the layers close, so how fast each part of a song moves reads at a glance.</p>
+  </div>
+
+  <div class="feat">
+    <h2>Waveform display <span class="tag new">NEW</span></h2>
+    <p>A waveform of whichever track you're hearing, placeable above or below the layers, so boundaries can be lined up against what the audio is actually doing.</p>
+  </div>
+
+  <div class="feat">
+    <h2>Snapping <span class="tag new">NEW</span></h2>
+    <p>Dragged edges snap to other bubbles' edges across every layer, to the track's transients when zoomed in, and to beats and downbeats when a grid is set — with a guide line showing each lock.</p>
+  </div>
+
+  <div class="feat">
+    <h2>Undo &amp; redo, everywhere <span class="tag new">NEW</span></h2>
+    <p>Every change — a split, a drag, a recolor, a group, a deleted layer — steps back and forward without limit.</p>
+  </div>
+
+  <div class="feat">
+    <h2>Build &amp; fade fills <span class="tag new">NEW</span></h2>
+    <p>Beyond solid color, a bubble can swell like a crescendo or fade like a diminuendo — as a block of color rising through it, the same block shaded from pale to full, or a gradient — and it exports to PDF and SVG exactly as it looks on screen.</p>
+  </div>
+
+  <div class="feat">
+    <h2>Excerpts as a reversible view <span class="tag ext">EXTENDED</span></h2>
+    <p>Focus the whole app on a range of bubbles, then bring the full song back with one keypress — the rest of the timeline is never lost. You can also save an excerpt out as its own file to hand along.</p>
+    <p class="was"><b>Before:</b> making an excerpt produced a new, separate timeline of that range.</p>
+  </div>
+
+  <div class="feat">
+    <h2>Export to PDF &amp; SVG for Canva <span class="tag new">NEW</span></h2>
+    <p>Export the visible timeline as vector PDF or SVG — editable text and shapes you can restyle in Canva — with optional ruler, layer names, waveform, and Top40 Theory branding, on a transparent background.</p>
+  </div>
+
+  <div class="feat">
+    <h2>Import your existing timelines <span class="tag new">NEW</span></h2>
+    <p>Open your Variations <code>.v2t</code> and Audio Timeliner <code>.tim</code> files directly — bubbles, nesting, colors, labels, annotations and timing all carried across — as a new project or as a layer alongside newer work.</p>
+  </div>
+
+  <div class="feat">
+    <h2>Remappable keyboard shortcuts <span class="tag new">NEW</span></h2>
+    <p>Every command's key can be changed and is saved for you, with clash-checking and a one-click reset.</p>
+  </div>
+
+  <div class="feat">
+    <h2>Save protection &amp; folder memory <span class="tag new">NEW</span></h2>
+    <p>An unsaved-changes marker and a prompt before you lose work, and file dialogs that open where you last were — so a folder of a student's songs stays a folder of that student's songs.</p>
+  </div>
+
+  <div class="feat">
+    <h2>Square or round bubbles <span class="tag ext">EXTENDED</span></h2>
+    <p>Switch a layer between arches and boxes, as in the original — now set per layer, alongside a per-layer opacity control for translucent overlays.</p>
+  </div>
+
+  <div class="carried">
+    <h2>Carried over from the original</h2>
+    <p>The features that made Variations worth building on, kept intact:</p>
+    <ul>
+      <li>Nested bubbles that envelop the levels beneath them</li>
+      <li>Marking boundaries by ear during playback</li>
+      <li>Click a bubble while playing to hear it from its start</li>
+      <li>Timestamps under the bottom row, and the option to hide them</li>
+      <li>Hiding individual bubbles to declutter</li>
+      <li>Zoom and scroll across a long timeline</li>
+      <li>Plain, portable project files</li>
+    </ul>
+  </div>
+</main>
+
+<footer>
+  Top40 Theory Timeliner · What's New · Version 2.3 · <a href="https://top40theory.com">top40theory.com</a>
+</footer>
+
+</body>
+</html>
